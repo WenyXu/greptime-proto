@@ -48,6 +48,12 @@ struct TableStruct_greptime_2fv1_2fwal_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_greptime_2fv1_2fwal_2eproto;
 namespace greptime {
 namespace v1 {
+class ManifestAction;
+struct ManifestActionDefaultTypeInternal;
+extern ManifestActionDefaultTypeInternal _ManifestAction_default_instance_;
+class ManifestActionList;
+struct ManifestActionListDefaultTypeInternal;
+extern ManifestActionListDefaultTypeInternal _ManifestActionList_default_instance_;
 class Mutation;
 struct MutationDefaultTypeInternal;
 extern MutationDefaultTypeInternal _Mutation_default_instance_;
@@ -57,6 +63,8 @@ extern WalEntryDefaultTypeInternal _WalEntry_default_instance_;
 }  // namespace v1
 }  // namespace greptime
 PROTOBUF_NAMESPACE_OPEN
+template<> ::greptime::v1::ManifestAction* Arena::CreateMaybeMessage<::greptime::v1::ManifestAction>(Arena*);
+template<> ::greptime::v1::ManifestActionList* Arena::CreateMaybeMessage<::greptime::v1::ManifestActionList>(Arena*);
 template<> ::greptime::v1::Mutation* Arena::CreateMaybeMessage<::greptime::v1::Mutation>(Arena*);
 template<> ::greptime::v1::WalEntry* Arena::CreateMaybeMessage<::greptime::v1::WalEntry>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -66,12 +74,13 @@ namespace v1 {
 enum OpType : int {
   DELETE = 0,
   PUT = 1,
+  MANIFEST = 2,
   OpType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   OpType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool OpType_IsValid(int value);
 constexpr OpType OpType_MIN = DELETE;
-constexpr OpType OpType_MAX = PUT;
+constexpr OpType OpType_MAX = MANIFEST;
 constexpr int OpType_ARRAYSIZE = OpType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OpType_descriptor();
@@ -89,6 +98,337 @@ inline bool OpType_Parse(
     OpType_descriptor(), name, value);
 }
 // ===================================================================
+
+class ManifestAction final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.ManifestAction) */ {
+ public:
+  inline ManifestAction() : ManifestAction(nullptr) {}
+  ~ManifestAction() override;
+  explicit PROTOBUF_CONSTEXPR ManifestAction(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ManifestAction(const ManifestAction& from);
+  ManifestAction(ManifestAction&& from) noexcept
+    : ManifestAction() {
+    *this = ::std::move(from);
+  }
+
+  inline ManifestAction& operator=(const ManifestAction& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ManifestAction& operator=(ManifestAction&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ManifestAction& default_instance() {
+    return *internal_default_instance();
+  }
+  enum DataCase {
+    kJson = 1,
+    DATA_NOT_SET = 0,
+  };
+
+  static inline const ManifestAction* internal_default_instance() {
+    return reinterpret_cast<const ManifestAction*>(
+               &_ManifestAction_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(ManifestAction& a, ManifestAction& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ManifestAction* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ManifestAction* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ManifestAction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ManifestAction>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ManifestAction& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ManifestAction& from) {
+    ManifestAction::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ManifestAction* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "greptime.v1.ManifestAction";
+  }
+  protected:
+  explicit ManifestAction(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJsonFieldNumber = 1,
+  };
+  // string json = 1;
+  bool has_json() const;
+  private:
+  bool _internal_has_json() const;
+  public:
+  void clear_json();
+  const std::string& json() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_json(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_json();
+  PROTOBUF_NODISCARD std::string* release_json();
+  void set_allocated_json(std::string* json);
+  private:
+  const std::string& _internal_json() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_json(const std::string& value);
+  std::string* _internal_mutable_json();
+  public:
+
+  void clear_data();
+  DataCase data_case() const;
+  // @@protoc_insertion_point(class_scope:greptime.v1.ManifestAction)
+ private:
+  class _Internal;
+  void set_has_json();
+
+  inline bool has_data() const;
+  inline void clear_has_data();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    union DataUnion {
+      constexpr DataUnion() : _constinit_{} {}
+        ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+      ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr json_;
+    } data_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    uint32_t _oneof_case_[1];
+
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_greptime_2fv1_2fwal_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ManifestActionList final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.ManifestActionList) */ {
+ public:
+  inline ManifestActionList() : ManifestActionList(nullptr) {}
+  ~ManifestActionList() override;
+  explicit PROTOBUF_CONSTEXPR ManifestActionList(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ManifestActionList(const ManifestActionList& from);
+  ManifestActionList(ManifestActionList&& from) noexcept
+    : ManifestActionList() {
+    *this = ::std::move(from);
+  }
+
+  inline ManifestActionList& operator=(const ManifestActionList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ManifestActionList& operator=(ManifestActionList&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ManifestActionList& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ManifestActionList* internal_default_instance() {
+    return reinterpret_cast<const ManifestActionList*>(
+               &_ManifestActionList_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(ManifestActionList& a, ManifestActionList& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ManifestActionList* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ManifestActionList* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ManifestActionList* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ManifestActionList>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ManifestActionList& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ManifestActionList& from) {
+    ManifestActionList::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ManifestActionList* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "greptime.v1.ManifestActionList";
+  }
+  protected:
+  explicit ManifestActionList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kActionsFieldNumber = 1,
+  };
+  // repeated .greptime.v1.ManifestAction actions = 1;
+  int actions_size() const;
+  private:
+  int _internal_actions_size() const;
+  public:
+  void clear_actions();
+  ::greptime::v1::ManifestAction* mutable_actions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction >*
+      mutable_actions();
+  private:
+  const ::greptime::v1::ManifestAction& _internal_actions(int index) const;
+  ::greptime::v1::ManifestAction* _internal_add_actions();
+  public:
+  const ::greptime::v1::ManifestAction& actions(int index) const;
+  ::greptime::v1::ManifestAction* add_actions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction >&
+      actions() const;
+
+  // @@protoc_insertion_point(class_scope:greptime.v1.ManifestActionList)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction > actions_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_greptime_2fv1_2fwal_2eproto;
+};
+// -------------------------------------------------------------------
 
 class Mutation final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:greptime.v1.Mutation) */ {
@@ -138,7 +478,7 @@ class Mutation final :
                &_Mutation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(Mutation& a, Mutation& b) {
     a.Swap(&b);
@@ -212,6 +552,7 @@ class Mutation final :
 
   enum : int {
     kRowsFieldNumber = 3,
+    kActionListFieldNumber = 4,
     kSequenceFieldNumber = 2,
     kOpTypeFieldNumber = 1,
   };
@@ -232,6 +573,24 @@ class Mutation final :
   void unsafe_arena_set_allocated_rows(
       ::greptime::v1::Rows* rows);
   ::greptime::v1::Rows* unsafe_arena_release_rows();
+
+  // .greptime.v1.ManifestActionList action_list = 4;
+  bool has_action_list() const;
+  private:
+  bool _internal_has_action_list() const;
+  public:
+  void clear_action_list();
+  const ::greptime::v1::ManifestActionList& action_list() const;
+  PROTOBUF_NODISCARD ::greptime::v1::ManifestActionList* release_action_list();
+  ::greptime::v1::ManifestActionList* mutable_action_list();
+  void set_allocated_action_list(::greptime::v1::ManifestActionList* action_list);
+  private:
+  const ::greptime::v1::ManifestActionList& _internal_action_list() const;
+  ::greptime::v1::ManifestActionList* _internal_mutable_action_list();
+  public:
+  void unsafe_arena_set_allocated_action_list(
+      ::greptime::v1::ManifestActionList* action_list);
+  ::greptime::v1::ManifestActionList* unsafe_arena_release_action_list();
 
   // uint64 sequence = 2;
   void clear_sequence();
@@ -260,6 +619,7 @@ class Mutation final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::greptime::v1::Rows* rows_;
+    ::greptime::v1::ManifestActionList* action_list_;
     uint64_t sequence_;
     int op_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -317,7 +677,7 @@ class WalEntry final :
                &_WalEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(WalEntry& a, WalEntry& b) {
     a.Swap(&b);
@@ -433,6 +793,140 @@ class WalEntry final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// ManifestAction
+
+// string json = 1;
+inline bool ManifestAction::_internal_has_json() const {
+  return data_case() == kJson;
+}
+inline bool ManifestAction::has_json() const {
+  return _internal_has_json();
+}
+inline void ManifestAction::set_has_json() {
+  _impl_._oneof_case_[0] = kJson;
+}
+inline void ManifestAction::clear_json() {
+  if (_internal_has_json()) {
+    _impl_.data_.json_.Destroy();
+    clear_has_data();
+  }
+}
+inline const std::string& ManifestAction::json() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.ManifestAction.json)
+  return _internal_json();
+}
+template <typename ArgT0, typename... ArgT>
+inline void ManifestAction::set_json(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_json()) {
+    clear_data();
+    set_has_json();
+    _impl_.data_.json_.InitDefault();
+  }
+  _impl_.data_.json_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:greptime.v1.ManifestAction.json)
+}
+inline std::string* ManifestAction::mutable_json() {
+  std::string* _s = _internal_mutable_json();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.ManifestAction.json)
+  return _s;
+}
+inline const std::string& ManifestAction::_internal_json() const {
+  if (_internal_has_json()) {
+    return _impl_.data_.json_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void ManifestAction::_internal_set_json(const std::string& value) {
+  if (!_internal_has_json()) {
+    clear_data();
+    set_has_json();
+    _impl_.data_.json_.InitDefault();
+  }
+  _impl_.data_.json_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ManifestAction::_internal_mutable_json() {
+  if (!_internal_has_json()) {
+    clear_data();
+    set_has_json();
+    _impl_.data_.json_.InitDefault();
+  }
+  return _impl_.data_.json_.Mutable(      GetArenaForAllocation());
+}
+inline std::string* ManifestAction::release_json() {
+  // @@protoc_insertion_point(field_release:greptime.v1.ManifestAction.json)
+  if (_internal_has_json()) {
+    clear_has_data();
+    return _impl_.data_.json_.Release();
+  } else {
+    return nullptr;
+  }
+}
+inline void ManifestAction::set_allocated_json(std::string* json) {
+  if (has_data()) {
+    clear_data();
+  }
+  if (json != nullptr) {
+    set_has_json();
+    _impl_.data_.json_.InitAllocated(json, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:greptime.v1.ManifestAction.json)
+}
+
+inline bool ManifestAction::has_data() const {
+  return data_case() != DATA_NOT_SET;
+}
+inline void ManifestAction::clear_has_data() {
+  _impl_._oneof_case_[0] = DATA_NOT_SET;
+}
+inline ManifestAction::DataCase ManifestAction::data_case() const {
+  return ManifestAction::DataCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// ManifestActionList
+
+// repeated .greptime.v1.ManifestAction actions = 1;
+inline int ManifestActionList::_internal_actions_size() const {
+  return _impl_.actions_.size();
+}
+inline int ManifestActionList::actions_size() const {
+  return _internal_actions_size();
+}
+inline void ManifestActionList::clear_actions() {
+  _impl_.actions_.Clear();
+}
+inline ::greptime::v1::ManifestAction* ManifestActionList::mutable_actions(int index) {
+  // @@protoc_insertion_point(field_mutable:greptime.v1.ManifestActionList.actions)
+  return _impl_.actions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction >*
+ManifestActionList::mutable_actions() {
+  // @@protoc_insertion_point(field_mutable_list:greptime.v1.ManifestActionList.actions)
+  return &_impl_.actions_;
+}
+inline const ::greptime::v1::ManifestAction& ManifestActionList::_internal_actions(int index) const {
+  return _impl_.actions_.Get(index);
+}
+inline const ::greptime::v1::ManifestAction& ManifestActionList::actions(int index) const {
+  // @@protoc_insertion_point(field_get:greptime.v1.ManifestActionList.actions)
+  return _internal_actions(index);
+}
+inline ::greptime::v1::ManifestAction* ManifestActionList::_internal_add_actions() {
+  return _impl_.actions_.Add();
+}
+inline ::greptime::v1::ManifestAction* ManifestActionList::add_actions() {
+  ::greptime::v1::ManifestAction* _add = _internal_add_actions();
+  // @@protoc_insertion_point(field_add:greptime.v1.ManifestActionList.actions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction >&
+ManifestActionList::actions() const {
+  // @@protoc_insertion_point(field_list:greptime.v1.ManifestActionList.actions)
+  return _impl_.actions_;
+}
+
+// -------------------------------------------------------------------
+
 // Mutation
 
 // .greptime.v1.OpType op_type = 1;
@@ -560,6 +1054,96 @@ inline void Mutation::set_allocated_rows(::greptime::v1::Rows* rows) {
   // @@protoc_insertion_point(field_set_allocated:greptime.v1.Mutation.rows)
 }
 
+// .greptime.v1.ManifestActionList action_list = 4;
+inline bool Mutation::_internal_has_action_list() const {
+  return this != internal_default_instance() && _impl_.action_list_ != nullptr;
+}
+inline bool Mutation::has_action_list() const {
+  return _internal_has_action_list();
+}
+inline void Mutation::clear_action_list() {
+  if (GetArenaForAllocation() == nullptr && _impl_.action_list_ != nullptr) {
+    delete _impl_.action_list_;
+  }
+  _impl_.action_list_ = nullptr;
+}
+inline const ::greptime::v1::ManifestActionList& Mutation::_internal_action_list() const {
+  const ::greptime::v1::ManifestActionList* p = _impl_.action_list_;
+  return p != nullptr ? *p : reinterpret_cast<const ::greptime::v1::ManifestActionList&>(
+      ::greptime::v1::_ManifestActionList_default_instance_);
+}
+inline const ::greptime::v1::ManifestActionList& Mutation::action_list() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.Mutation.action_list)
+  return _internal_action_list();
+}
+inline void Mutation::unsafe_arena_set_allocated_action_list(
+    ::greptime::v1::ManifestActionList* action_list) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.action_list_);
+  }
+  _impl_.action_list_ = action_list;
+  if (action_list) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:greptime.v1.Mutation.action_list)
+}
+inline ::greptime::v1::ManifestActionList* Mutation::release_action_list() {
+  
+  ::greptime::v1::ManifestActionList* temp = _impl_.action_list_;
+  _impl_.action_list_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::greptime::v1::ManifestActionList* Mutation::unsafe_arena_release_action_list() {
+  // @@protoc_insertion_point(field_release:greptime.v1.Mutation.action_list)
+  
+  ::greptime::v1::ManifestActionList* temp = _impl_.action_list_;
+  _impl_.action_list_ = nullptr;
+  return temp;
+}
+inline ::greptime::v1::ManifestActionList* Mutation::_internal_mutable_action_list() {
+  
+  if (_impl_.action_list_ == nullptr) {
+    auto* p = CreateMaybeMessage<::greptime::v1::ManifestActionList>(GetArenaForAllocation());
+    _impl_.action_list_ = p;
+  }
+  return _impl_.action_list_;
+}
+inline ::greptime::v1::ManifestActionList* Mutation::mutable_action_list() {
+  ::greptime::v1::ManifestActionList* _msg = _internal_mutable_action_list();
+  // @@protoc_insertion_point(field_mutable:greptime.v1.Mutation.action_list)
+  return _msg;
+}
+inline void Mutation::set_allocated_action_list(::greptime::v1::ManifestActionList* action_list) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.action_list_;
+  }
+  if (action_list) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(action_list);
+    if (message_arena != submessage_arena) {
+      action_list = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, action_list, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.action_list_ = action_list;
+  // @@protoc_insertion_point(field_set_allocated:greptime.v1.Mutation.action_list)
+}
+
 // -------------------------------------------------------------------
 
 // WalEntry
@@ -607,6 +1191,10 @@ WalEntry::mutations() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

@@ -20,12 +20,22 @@ option go_package = "github.com/GreptimeTeam/greptime-proto/go/greptime/v1";
 
 import "greptime/v1/row.proto";
 
+message ManifestAction {
+  oneof data { string json = 1; }
+}
+
+message ManifestActionList {
+  repeated ManifestAction actions = 1;
+}
+
 // Type of operation to rows.
 enum OpType {
   // Delete rows.
   DELETE = 0;
   // Put rows.
   PUT = 1;
+  // Manifest actions.
+  MANIFEST = 2;
 }
 
 // Mutation contains updates to a set of rows.
@@ -36,6 +46,8 @@ message Mutation {
   uint64 sequence = 2;
   // Row updates to write to the WAL.
   Rows rows = 3;
+  // Manifest action list
+  ManifestActionList action_list = 4;
 }
 
 // A WAL entry contains a list of mutations for a region to write.
