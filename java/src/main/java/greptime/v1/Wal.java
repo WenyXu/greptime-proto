@@ -159,49 +159,55 @@ public final class Wal {
     // @@protoc_insertion_point(enum_scope:greptime.v1.OpType)
   }
 
-  public interface ManifestActionOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:greptime.v1.ManifestAction)
+  public interface ManifestActionListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:greptime.v1.ManifestActionList)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string json = 1;</code>
+     * <code>uint64 manifest_version = 1;</code>
+     * @return The manifestVersion.
+     */
+    long getManifestVersion();
+
+    /**
+     * <code>string json = 2;</code>
      * @return Whether the json field is set.
      */
     boolean hasJson();
     /**
-     * <code>string json = 1;</code>
+     * <code>string json = 2;</code>
      * @return The json.
      */
     java.lang.String getJson();
     /**
-     * <code>string json = 1;</code>
+     * <code>string json = 2;</code>
      * @return The bytes for json.
      */
     com.google.protobuf.ByteString
         getJsonBytes();
 
-    public greptime.v1.Wal.ManifestAction.DataCase getDataCase();
+    public greptime.v1.Wal.ManifestActionList.DataCase getDataCase();
   }
   /**
-   * Protobuf type {@code greptime.v1.ManifestAction}
+   * Protobuf type {@code greptime.v1.ManifestActionList}
    */
-  public static final class ManifestAction extends
+  public static final class ManifestActionList extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:greptime.v1.ManifestAction)
-      ManifestActionOrBuilder {
+      // @@protoc_insertion_point(message_implements:greptime.v1.ManifestActionList)
+      ManifestActionListOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ManifestAction.newBuilder() to construct.
-    private ManifestAction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ManifestActionList.newBuilder() to construct.
+    private ManifestActionList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ManifestAction() {
+    private ManifestActionList() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ManifestAction();
+      return new ManifestActionList();
     }
 
     @java.lang.Override
@@ -209,7 +215,7 @@ public final class Wal {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ManifestAction(
+    private ManifestActionList(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -227,9 +233,14 @@ public final class Wal {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
+
+              manifestVersion_ = input.readUInt64();
+              break;
+            }
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
-              dataCase_ = 1;
+              dataCase_ = 2;
               data_ = s;
               break;
             }
@@ -256,15 +267,15 @@ public final class Wal {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return greptime.v1.Wal.internal_static_greptime_v1_ManifestAction_descriptor;
+      return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return greptime.v1.Wal.internal_static_greptime_v1_ManifestAction_fieldAccessorTable
+      return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              greptime.v1.Wal.ManifestAction.class, greptime.v1.Wal.ManifestAction.Builder.class);
+              greptime.v1.Wal.ManifestActionList.class, greptime.v1.Wal.ManifestActionList.Builder.class);
     }
 
     private int dataCase_ = 0;
@@ -272,7 +283,7 @@ public final class Wal {
     public enum DataCase
         implements com.google.protobuf.Internal.EnumLite,
             com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      JSON(1),
+      JSON(2),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -290,7 +301,7 @@ public final class Wal {
 
       public static DataCase forNumber(int value) {
         switch (value) {
-          case 1: return JSON;
+          case 2: return JSON;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -306,21 +317,32 @@ public final class Wal {
           dataCase_);
     }
 
-    public static final int JSON_FIELD_NUMBER = 1;
+    public static final int MANIFEST_VERSION_FIELD_NUMBER = 1;
+    private long manifestVersion_;
     /**
-     * <code>string json = 1;</code>
+     * <code>uint64 manifest_version = 1;</code>
+     * @return The manifestVersion.
+     */
+    @java.lang.Override
+    public long getManifestVersion() {
+      return manifestVersion_;
+    }
+
+    public static final int JSON_FIELD_NUMBER = 2;
+    /**
+     * <code>string json = 2;</code>
      * @return Whether the json field is set.
      */
     public boolean hasJson() {
-      return dataCase_ == 1;
+      return dataCase_ == 2;
     }
     /**
-     * <code>string json = 1;</code>
+     * <code>string json = 2;</code>
      * @return The json.
      */
     public java.lang.String getJson() {
       java.lang.Object ref = "";
-      if (dataCase_ == 1) {
+      if (dataCase_ == 2) {
         ref = data_;
       }
       if (ref instanceof java.lang.String) {
@@ -329,27 +351,27 @@ public final class Wal {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (dataCase_ == 1) {
+        if (dataCase_ == 2) {
           data_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>string json = 1;</code>
+     * <code>string json = 2;</code>
      * @return The bytes for json.
      */
     public com.google.protobuf.ByteString
         getJsonBytes() {
       java.lang.Object ref = "";
-      if (dataCase_ == 1) {
+      if (dataCase_ == 2) {
         ref = data_;
       }
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        if (dataCase_ == 1) {
+        if (dataCase_ == 2) {
           data_ = b;
         }
         return b;
@@ -372,683 +394,11 @@ public final class Wal {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (dataCase_ == 1) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, data_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (dataCase_ == 1) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, data_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof greptime.v1.Wal.ManifestAction)) {
-        return super.equals(obj);
-      }
-      greptime.v1.Wal.ManifestAction other = (greptime.v1.Wal.ManifestAction) obj;
-
-      if (!getDataCase().equals(other.getDataCase())) return false;
-      switch (dataCase_) {
-        case 1:
-          if (!getJson()
-              .equals(other.getJson())) return false;
-          break;
-        case 0:
-        default:
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      switch (dataCase_) {
-        case 1:
-          hash = (37 * hash) + JSON_FIELD_NUMBER;
-          hash = (53 * hash) + getJson().hashCode();
-          break;
-        case 0:
-        default:
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static greptime.v1.Wal.ManifestAction parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static greptime.v1.Wal.ManifestAction parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static greptime.v1.Wal.ManifestAction parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(greptime.v1.Wal.ManifestAction prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code greptime.v1.ManifestAction}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:greptime.v1.ManifestAction)
-        greptime.v1.Wal.ManifestActionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return greptime.v1.Wal.internal_static_greptime_v1_ManifestAction_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return greptime.v1.Wal.internal_static_greptime_v1_ManifestAction_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                greptime.v1.Wal.ManifestAction.class, greptime.v1.Wal.ManifestAction.Builder.class);
-      }
-
-      // Construct using greptime.v1.Wal.ManifestAction.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        dataCase_ = 0;
-        data_ = null;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return greptime.v1.Wal.internal_static_greptime_v1_ManifestAction_descriptor;
-      }
-
-      @java.lang.Override
-      public greptime.v1.Wal.ManifestAction getDefaultInstanceForType() {
-        return greptime.v1.Wal.ManifestAction.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public greptime.v1.Wal.ManifestAction build() {
-        greptime.v1.Wal.ManifestAction result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public greptime.v1.Wal.ManifestAction buildPartial() {
-        greptime.v1.Wal.ManifestAction result = new greptime.v1.Wal.ManifestAction(this);
-        if (dataCase_ == 1) {
-          result.data_ = data_;
-        }
-        result.dataCase_ = dataCase_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof greptime.v1.Wal.ManifestAction) {
-          return mergeFrom((greptime.v1.Wal.ManifestAction)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(greptime.v1.Wal.ManifestAction other) {
-        if (other == greptime.v1.Wal.ManifestAction.getDefaultInstance()) return this;
-        switch (other.getDataCase()) {
-          case JSON: {
-            dataCase_ = 1;
-            data_ = other.data_;
-            onChanged();
-            break;
-          }
-          case DATA_NOT_SET: {
-            break;
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        greptime.v1.Wal.ManifestAction parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (greptime.v1.Wal.ManifestAction) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int dataCase_ = 0;
-      private java.lang.Object data_;
-      public DataCase
-          getDataCase() {
-        return DataCase.forNumber(
-            dataCase_);
-      }
-
-      public Builder clearData() {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-        return this;
-      }
-
-
-      /**
-       * <code>string json = 1;</code>
-       * @return Whether the json field is set.
-       */
-      @java.lang.Override
-      public boolean hasJson() {
-        return dataCase_ == 1;
-      }
-      /**
-       * <code>string json = 1;</code>
-       * @return The json.
-       */
-      @java.lang.Override
-      public java.lang.String getJson() {
-        java.lang.Object ref = "";
-        if (dataCase_ == 1) {
-          ref = data_;
-        }
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (dataCase_ == 1) {
-            data_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string json = 1;</code>
-       * @return The bytes for json.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-          getJsonBytes() {
-        java.lang.Object ref = "";
-        if (dataCase_ == 1) {
-          ref = data_;
-        }
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          if (dataCase_ == 1) {
-            data_ = b;
-          }
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string json = 1;</code>
-       * @param value The json to set.
-       * @return This builder for chaining.
-       */
-      public Builder setJson(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  dataCase_ = 1;
-        data_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string json = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearJson() {
-        if (dataCase_ == 1) {
-          dataCase_ = 0;
-          data_ = null;
-          onChanged();
-        }
-        return this;
-      }
-      /**
-       * <code>string json = 1;</code>
-       * @param value The bytes for json to set.
-       * @return This builder for chaining.
-       */
-      public Builder setJsonBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        dataCase_ = 1;
-        data_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:greptime.v1.ManifestAction)
-    }
-
-    // @@protoc_insertion_point(class_scope:greptime.v1.ManifestAction)
-    private static final greptime.v1.Wal.ManifestAction DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new greptime.v1.Wal.ManifestAction();
-    }
-
-    public static greptime.v1.Wal.ManifestAction getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ManifestAction>
-        PARSER = new com.google.protobuf.AbstractParser<ManifestAction>() {
-      @java.lang.Override
-      public ManifestAction parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ManifestAction(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ManifestAction> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ManifestAction> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public greptime.v1.Wal.ManifestAction getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ManifestActionListOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:greptime.v1.ManifestActionList)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>uint64 manifest_version = 1;</code>
-     * @return The manifestVersion.
-     */
-    long getManifestVersion();
-
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    java.util.List<greptime.v1.Wal.ManifestAction> 
-        getActionsList();
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    greptime.v1.Wal.ManifestAction getActions(int index);
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    int getActionsCount();
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    java.util.List<? extends greptime.v1.Wal.ManifestActionOrBuilder> 
-        getActionsOrBuilderList();
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    greptime.v1.Wal.ManifestActionOrBuilder getActionsOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code greptime.v1.ManifestActionList}
-   */
-  public static final class ManifestActionList extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:greptime.v1.ManifestActionList)
-      ManifestActionListOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ManifestActionList.newBuilder() to construct.
-    private ManifestActionList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ManifestActionList() {
-      actions_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new ManifestActionList();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ManifestActionList(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              manifestVersion_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                actions_ = new java.util.ArrayList<greptime.v1.Wal.ManifestAction>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              actions_.add(
-                  input.readMessage(greptime.v1.Wal.ManifestAction.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          actions_ = java.util.Collections.unmodifiableList(actions_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              greptime.v1.Wal.ManifestActionList.class, greptime.v1.Wal.ManifestActionList.Builder.class);
-    }
-
-    public static final int MANIFEST_VERSION_FIELD_NUMBER = 1;
-    private long manifestVersion_;
-    /**
-     * <code>uint64 manifest_version = 1;</code>
-     * @return The manifestVersion.
-     */
-    @java.lang.Override
-    public long getManifestVersion() {
-      return manifestVersion_;
-    }
-
-    public static final int ACTIONS_FIELD_NUMBER = 2;
-    private java.util.List<greptime.v1.Wal.ManifestAction> actions_;
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<greptime.v1.Wal.ManifestAction> getActionsList() {
-      return actions_;
-    }
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends greptime.v1.Wal.ManifestActionOrBuilder> 
-        getActionsOrBuilderList() {
-      return actions_;
-    }
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    @java.lang.Override
-    public int getActionsCount() {
-      return actions_.size();
-    }
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    @java.lang.Override
-    public greptime.v1.Wal.ManifestAction getActions(int index) {
-      return actions_.get(index);
-    }
-    /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-     */
-    @java.lang.Override
-    public greptime.v1.Wal.ManifestActionOrBuilder getActionsOrBuilder(
-        int index) {
-      return actions_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
       if (manifestVersion_ != 0L) {
         output.writeUInt64(1, manifestVersion_);
       }
-      for (int i = 0; i < actions_.size(); i++) {
-        output.writeMessage(2, actions_.get(i));
+      if (dataCase_ == 2) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, data_);
       }
       unknownFields.writeTo(output);
     }
@@ -1063,9 +413,8 @@ public final class Wal {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, manifestVersion_);
       }
-      for (int i = 0; i < actions_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, actions_.get(i));
+      if (dataCase_ == 2) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, data_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1084,8 +433,15 @@ public final class Wal {
 
       if (getManifestVersion()
           != other.getManifestVersion()) return false;
-      if (!getActionsList()
-          .equals(other.getActionsList())) return false;
+      if (!getDataCase().equals(other.getDataCase())) return false;
+      switch (dataCase_) {
+        case 2:
+          if (!getJson()
+              .equals(other.getJson())) return false;
+          break;
+        case 0:
+        default:
+      }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1100,9 +456,13 @@ public final class Wal {
       hash = (37 * hash) + MANIFEST_VERSION_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getManifestVersion());
-      if (getActionsCount() > 0) {
-        hash = (37 * hash) + ACTIONS_FIELD_NUMBER;
-        hash = (53 * hash) + getActionsList().hashCode();
+      switch (dataCase_) {
+        case 2:
+          hash = (37 * hash) + JSON_FIELD_NUMBER;
+          hash = (53 * hash) + getJson().hashCode();
+          break;
+        case 0:
+        default:
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1232,7 +592,6 @@ public final class Wal {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getActionsFieldBuilder();
         }
       }
       @java.lang.Override
@@ -1240,12 +599,8 @@ public final class Wal {
         super.clear();
         manifestVersion_ = 0L;
 
-        if (actionsBuilder_ == null) {
-          actions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          actionsBuilder_.clear();
-        }
+        dataCase_ = 0;
+        data_ = null;
         return this;
       }
 
@@ -1272,17 +627,11 @@ public final class Wal {
       @java.lang.Override
       public greptime.v1.Wal.ManifestActionList buildPartial() {
         greptime.v1.Wal.ManifestActionList result = new greptime.v1.Wal.ManifestActionList(this);
-        int from_bitField0_ = bitField0_;
         result.manifestVersion_ = manifestVersion_;
-        if (actionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            actions_ = java.util.Collections.unmodifiableList(actions_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.actions_ = actions_;
-        } else {
-          result.actions_ = actionsBuilder_.build();
+        if (dataCase_ == 2) {
+          result.data_ = data_;
         }
+        result.dataCase_ = dataCase_;
         onBuilt();
         return result;
       }
@@ -1334,30 +683,15 @@ public final class Wal {
         if (other.getManifestVersion() != 0L) {
           setManifestVersion(other.getManifestVersion());
         }
-        if (actionsBuilder_ == null) {
-          if (!other.actions_.isEmpty()) {
-            if (actions_.isEmpty()) {
-              actions_ = other.actions_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureActionsIsMutable();
-              actions_.addAll(other.actions_);
-            }
+        switch (other.getDataCase()) {
+          case JSON: {
+            dataCase_ = 2;
+            data_ = other.data_;
             onChanged();
+            break;
           }
-        } else {
-          if (!other.actions_.isEmpty()) {
-            if (actionsBuilder_.isEmpty()) {
-              actionsBuilder_.dispose();
-              actionsBuilder_ = null;
-              actions_ = other.actions_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              actionsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getActionsFieldBuilder() : null;
-            } else {
-              actionsBuilder_.addAllMessages(other.actions_);
-            }
+          case DATA_NOT_SET: {
+            break;
           }
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -1388,7 +722,21 @@ public final class Wal {
         }
         return this;
       }
-      private int bitField0_;
+      private int dataCase_ = 0;
+      private java.lang.Object data_;
+      public DataCase
+          getDataCase() {
+        return DataCase.forNumber(
+            dataCase_);
+      }
+
+      public Builder clearData() {
+        dataCase_ = 0;
+        data_ = null;
+        onChanged();
+        return this;
+      }
+
 
       private long manifestVersion_ ;
       /**
@@ -1421,244 +769,101 @@ public final class Wal {
         return this;
       }
 
-      private java.util.List<greptime.v1.Wal.ManifestAction> actions_ =
-        java.util.Collections.emptyList();
-      private void ensureActionsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          actions_ = new java.util.ArrayList<greptime.v1.Wal.ManifestAction>(actions_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          greptime.v1.Wal.ManifestAction, greptime.v1.Wal.ManifestAction.Builder, greptime.v1.Wal.ManifestActionOrBuilder> actionsBuilder_;
-
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
+       * <code>string json = 2;</code>
+       * @return Whether the json field is set.
        */
-      public java.util.List<greptime.v1.Wal.ManifestAction> getActionsList() {
-        if (actionsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(actions_);
-        } else {
-          return actionsBuilder_.getMessageList();
+      @java.lang.Override
+      public boolean hasJson() {
+        return dataCase_ == 2;
+      }
+      /**
+       * <code>string json = 2;</code>
+       * @return The json.
+       */
+      @java.lang.Override
+      public java.lang.String getJson() {
+        java.lang.Object ref = "";
+        if (dataCase_ == 2) {
+          ref = data_;
         }
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public int getActionsCount() {
-        if (actionsBuilder_ == null) {
-          return actions_.size();
-        } else {
-          return actionsBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public greptime.v1.Wal.ManifestAction getActions(int index) {
-        if (actionsBuilder_ == null) {
-          return actions_.get(index);
-        } else {
-          return actionsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder setActions(
-          int index, greptime.v1.Wal.ManifestAction value) {
-        if (actionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (dataCase_ == 2) {
+            data_ = s;
           }
-          ensureActionsIsMutable();
-          actions_.set(index, value);
-          onChanged();
+          return s;
         } else {
-          actionsBuilder_.setMessage(index, value);
+          return (java.lang.String) ref;
         }
-        return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
+       * <code>string json = 2;</code>
+       * @return The bytes for json.
        */
-      public Builder setActions(
-          int index, greptime.v1.Wal.ManifestAction.Builder builderForValue) {
-        if (actionsBuilder_ == null) {
-          ensureActionsIsMutable();
-          actions_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          actionsBuilder_.setMessage(index, builderForValue.build());
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getJsonBytes() {
+        java.lang.Object ref = "";
+        if (dataCase_ == 2) {
+          ref = data_;
         }
-        return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder addActions(greptime.v1.Wal.ManifestAction value) {
-        if (actionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          if (dataCase_ == 2) {
+            data_ = b;
           }
-          ensureActionsIsMutable();
-          actions_.add(value);
-          onChanged();
+          return b;
         } else {
-          actionsBuilder_.addMessage(value);
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string json = 2;</code>
+       * @param value The json to set.
+       * @return This builder for chaining.
+       */
+      public Builder setJson(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  dataCase_ = 2;
+        data_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string json = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearJson() {
+        if (dataCase_ == 2) {
+          dataCase_ = 0;
+          data_ = null;
+          onChanged();
         }
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
+       * <code>string json = 2;</code>
+       * @param value The bytes for json to set.
+       * @return This builder for chaining.
        */
-      public Builder addActions(
-          int index, greptime.v1.Wal.ManifestAction value) {
-        if (actionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureActionsIsMutable();
-          actions_.add(index, value);
-          onChanged();
-        } else {
-          actionsBuilder_.addMessage(index, value);
-        }
+      public Builder setJsonBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        dataCase_ = 2;
+        data_ = value;
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder addActions(
-          greptime.v1.Wal.ManifestAction.Builder builderForValue) {
-        if (actionsBuilder_ == null) {
-          ensureActionsIsMutable();
-          actions_.add(builderForValue.build());
-          onChanged();
-        } else {
-          actionsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder addActions(
-          int index, greptime.v1.Wal.ManifestAction.Builder builderForValue) {
-        if (actionsBuilder_ == null) {
-          ensureActionsIsMutable();
-          actions_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          actionsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder addAllActions(
-          java.lang.Iterable<? extends greptime.v1.Wal.ManifestAction> values) {
-        if (actionsBuilder_ == null) {
-          ensureActionsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, actions_);
-          onChanged();
-        } else {
-          actionsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder clearActions() {
-        if (actionsBuilder_ == null) {
-          actions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          actionsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public Builder removeActions(int index) {
-        if (actionsBuilder_ == null) {
-          ensureActionsIsMutable();
-          actions_.remove(index);
-          onChanged();
-        } else {
-          actionsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public greptime.v1.Wal.ManifestAction.Builder getActionsBuilder(
-          int index) {
-        return getActionsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public greptime.v1.Wal.ManifestActionOrBuilder getActionsOrBuilder(
-          int index) {
-        if (actionsBuilder_ == null) {
-          return actions_.get(index);  } else {
-          return actionsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public java.util.List<? extends greptime.v1.Wal.ManifestActionOrBuilder> 
-           getActionsOrBuilderList() {
-        if (actionsBuilder_ != null) {
-          return actionsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(actions_);
-        }
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public greptime.v1.Wal.ManifestAction.Builder addActionsBuilder() {
-        return getActionsFieldBuilder().addBuilder(
-            greptime.v1.Wal.ManifestAction.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public greptime.v1.Wal.ManifestAction.Builder addActionsBuilder(
-          int index) {
-        return getActionsFieldBuilder().addBuilder(
-            index, greptime.v1.Wal.ManifestAction.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
-       */
-      public java.util.List<greptime.v1.Wal.ManifestAction.Builder> 
-           getActionsBuilderList() {
-        return getActionsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          greptime.v1.Wal.ManifestAction, greptime.v1.Wal.ManifestAction.Builder, greptime.v1.Wal.ManifestActionOrBuilder> 
-          getActionsFieldBuilder() {
-        if (actionsBuilder_ == null) {
-          actionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              greptime.v1.Wal.ManifestAction, greptime.v1.Wal.ManifestAction.Builder, greptime.v1.Wal.ManifestActionOrBuilder>(
-                  actions_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          actions_ = null;
-        }
-        return actionsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -3817,11 +3022,6 @@ public final class Wal {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_greptime_v1_ManifestAction_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_greptime_v1_ManifestAction_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_greptime_v1_ManifestActionList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -3846,44 +3046,37 @@ public final class Wal {
   static {
     java.lang.String[] descriptorData = {
       "\n\025greptime/v1/wal.proto\022\013greptime.v1\032\025gr" +
-      "eptime/v1/row.proto\"(\n\016ManifestAction\022\016\n" +
-      "\004json\030\001 \001(\tH\000B\006\n\004data\"\\\n\022ManifestActionL" +
-      "ist\022\030\n\020manifest_version\030\001 \001(\004\022,\n\007actions" +
-      "\030\002 \003(\0132\033.greptime.v1.ManifestAction\"\231\001\n\010" +
-      "Mutation\022$\n\007op_type\030\001 \001(\0162\023.greptime.v1." +
-      "OpType\022\020\n\010sequence\030\002 \001(\004\022\037\n\004rows\030\003 \001(\0132\021" +
-      ".greptime.v1.Rows\0224\n\013action_list\030\004 \001(\0132\037" +
-      ".greptime.v1.ManifestActionList\"4\n\010WalEn" +
-      "try\022(\n\tmutations\030\001 \003(\0132\025.greptime.v1.Mut" +
-      "ation*+\n\006OpType\022\n\n\006DELETE\020\000\022\007\n\003PUT\020\001\022\014\n\010" +
-      "MANIFEST\020\002B7Z5github.com/GreptimeTeam/gr" +
-      "eptime-proto/go/greptime/v1b\006proto3"
+      "eptime/v1/row.proto\"F\n\022ManifestActionLis" +
+      "t\022\030\n\020manifest_version\030\001 \001(\004\022\016\n\004json\030\002 \001(" +
+      "\tH\000B\006\n\004data\"\231\001\n\010Mutation\022$\n\007op_type\030\001 \001(" +
+      "\0162\023.greptime.v1.OpType\022\020\n\010sequence\030\002 \001(\004" +
+      "\022\037\n\004rows\030\003 \001(\0132\021.greptime.v1.Rows\0224\n\013act" +
+      "ion_list\030\004 \001(\0132\037.greptime.v1.ManifestAct" +
+      "ionList\"4\n\010WalEntry\022(\n\tmutations\030\001 \003(\0132\025" +
+      ".greptime.v1.Mutation*+\n\006OpType\022\n\n\006DELET" +
+      "E\020\000\022\007\n\003PUT\020\001\022\014\n\010MANIFEST\020\002B7Z5github.com" +
+      "/GreptimeTeam/greptime-proto/go/greptime" +
+      "/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           io.greptime.v1.RowData.getDescriptor(),
         });
-    internal_static_greptime_v1_ManifestAction_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_greptime_v1_ManifestAction_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_greptime_v1_ManifestAction_descriptor,
-        new java.lang.String[] { "Json", "Data", });
     internal_static_greptime_v1_ManifestActionList_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_greptime_v1_ManifestActionList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_ManifestActionList_descriptor,
-        new java.lang.String[] { "ManifestVersion", "Actions", });
+        new java.lang.String[] { "ManifestVersion", "Json", "Data", });
     internal_static_greptime_v1_Mutation_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_greptime_v1_Mutation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_Mutation_descriptor,
         new java.lang.String[] { "OpType", "Sequence", "Rows", "ActionList", });
     internal_static_greptime_v1_WalEntry_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_greptime_v1_WalEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_WalEntry_descriptor,

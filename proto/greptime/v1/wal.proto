@@ -20,13 +20,9 @@ option go_package = "github.com/GreptimeTeam/greptime-proto/go/greptime/v1";
 
 import "greptime/v1/row.proto";
 
-message ManifestAction {
-  oneof data { string json = 1; }
-}
-
 message ManifestActionList {
   uint64 manifest_version = 1;
-  repeated ManifestAction actions = 2;
+  oneof data { string json = 2; }
 }
 
 // Type of operation to rows.
