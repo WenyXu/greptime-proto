@@ -852,25 +852,31 @@ public final class Wal {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>uint64 manifest_version = 1;</code>
+     * @return The manifestVersion.
+     */
+    long getManifestVersion();
+
+    /**
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     java.util.List<greptime.v1.Wal.ManifestAction> 
         getActionsList();
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     greptime.v1.Wal.ManifestAction getActions(int index);
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     int getActionsCount();
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     java.util.List<? extends greptime.v1.Wal.ManifestActionOrBuilder> 
         getActionsOrBuilderList();
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     greptime.v1.Wal.ManifestActionOrBuilder getActionsOrBuilder(
         int index);
@@ -922,7 +928,12 @@ public final class Wal {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
+
+              manifestVersion_ = input.readUInt64();
+              break;
+            }
+            case 18: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 actions_ = new java.util.ArrayList<greptime.v1.Wal.ManifestAction>();
                 mutable_bitField0_ |= 0x00000001;
@@ -968,17 +979,28 @@ public final class Wal {
               greptime.v1.Wal.ManifestActionList.class, greptime.v1.Wal.ManifestActionList.Builder.class);
     }
 
-    public static final int ACTIONS_FIELD_NUMBER = 1;
+    public static final int MANIFEST_VERSION_FIELD_NUMBER = 1;
+    private long manifestVersion_;
+    /**
+     * <code>uint64 manifest_version = 1;</code>
+     * @return The manifestVersion.
+     */
+    @java.lang.Override
+    public long getManifestVersion() {
+      return manifestVersion_;
+    }
+
+    public static final int ACTIONS_FIELD_NUMBER = 2;
     private java.util.List<greptime.v1.Wal.ManifestAction> actions_;
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     @java.lang.Override
     public java.util.List<greptime.v1.Wal.ManifestAction> getActionsList() {
       return actions_;
     }
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     @java.lang.Override
     public java.util.List<? extends greptime.v1.Wal.ManifestActionOrBuilder> 
@@ -986,21 +1008,21 @@ public final class Wal {
       return actions_;
     }
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     @java.lang.Override
     public int getActionsCount() {
       return actions_.size();
     }
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     @java.lang.Override
     public greptime.v1.Wal.ManifestAction getActions(int index) {
       return actions_.get(index);
     }
     /**
-     * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+     * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
      */
     @java.lang.Override
     public greptime.v1.Wal.ManifestActionOrBuilder getActionsOrBuilder(
@@ -1022,8 +1044,11 @@ public final class Wal {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (manifestVersion_ != 0L) {
+        output.writeUInt64(1, manifestVersion_);
+      }
       for (int i = 0; i < actions_.size(); i++) {
-        output.writeMessage(1, actions_.get(i));
+        output.writeMessage(2, actions_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1034,9 +1059,13 @@ public final class Wal {
       if (size != -1) return size;
 
       size = 0;
+      if (manifestVersion_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, manifestVersion_);
+      }
       for (int i = 0; i < actions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, actions_.get(i));
+          .computeMessageSize(2, actions_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1053,6 +1082,8 @@ public final class Wal {
       }
       greptime.v1.Wal.ManifestActionList other = (greptime.v1.Wal.ManifestActionList) obj;
 
+      if (getManifestVersion()
+          != other.getManifestVersion()) return false;
       if (!getActionsList()
           .equals(other.getActionsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -1066,6 +1097,9 @@ public final class Wal {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MANIFEST_VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getManifestVersion());
       if (getActionsCount() > 0) {
         hash = (37 * hash) + ACTIONS_FIELD_NUMBER;
         hash = (53 * hash) + getActionsList().hashCode();
@@ -1204,6 +1238,8 @@ public final class Wal {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        manifestVersion_ = 0L;
+
         if (actionsBuilder_ == null) {
           actions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
@@ -1237,6 +1273,7 @@ public final class Wal {
       public greptime.v1.Wal.ManifestActionList buildPartial() {
         greptime.v1.Wal.ManifestActionList result = new greptime.v1.Wal.ManifestActionList(this);
         int from_bitField0_ = bitField0_;
+        result.manifestVersion_ = manifestVersion_;
         if (actionsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             actions_ = java.util.Collections.unmodifiableList(actions_);
@@ -1294,6 +1331,9 @@ public final class Wal {
 
       public Builder mergeFrom(greptime.v1.Wal.ManifestActionList other) {
         if (other == greptime.v1.Wal.ManifestActionList.getDefaultInstance()) return this;
+        if (other.getManifestVersion() != 0L) {
+          setManifestVersion(other.getManifestVersion());
+        }
         if (actionsBuilder_ == null) {
           if (!other.actions_.isEmpty()) {
             if (actions_.isEmpty()) {
@@ -1350,6 +1390,37 @@ public final class Wal {
       }
       private int bitField0_;
 
+      private long manifestVersion_ ;
+      /**
+       * <code>uint64 manifest_version = 1;</code>
+       * @return The manifestVersion.
+       */
+      @java.lang.Override
+      public long getManifestVersion() {
+        return manifestVersion_;
+      }
+      /**
+       * <code>uint64 manifest_version = 1;</code>
+       * @param value The manifestVersion to set.
+       * @return This builder for chaining.
+       */
+      public Builder setManifestVersion(long value) {
+        
+        manifestVersion_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 manifest_version = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearManifestVersion() {
+        
+        manifestVersion_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private java.util.List<greptime.v1.Wal.ManifestAction> actions_ =
         java.util.Collections.emptyList();
       private void ensureActionsIsMutable() {
@@ -1363,7 +1434,7 @@ public final class Wal {
           greptime.v1.Wal.ManifestAction, greptime.v1.Wal.ManifestAction.Builder, greptime.v1.Wal.ManifestActionOrBuilder> actionsBuilder_;
 
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public java.util.List<greptime.v1.Wal.ManifestAction> getActionsList() {
         if (actionsBuilder_ == null) {
@@ -1373,7 +1444,7 @@ public final class Wal {
         }
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public int getActionsCount() {
         if (actionsBuilder_ == null) {
@@ -1383,7 +1454,7 @@ public final class Wal {
         }
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public greptime.v1.Wal.ManifestAction getActions(int index) {
         if (actionsBuilder_ == null) {
@@ -1393,7 +1464,7 @@ public final class Wal {
         }
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder setActions(
           int index, greptime.v1.Wal.ManifestAction value) {
@@ -1410,7 +1481,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder setActions(
           int index, greptime.v1.Wal.ManifestAction.Builder builderForValue) {
@@ -1424,7 +1495,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder addActions(greptime.v1.Wal.ManifestAction value) {
         if (actionsBuilder_ == null) {
@@ -1440,7 +1511,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder addActions(
           int index, greptime.v1.Wal.ManifestAction value) {
@@ -1457,7 +1528,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder addActions(
           greptime.v1.Wal.ManifestAction.Builder builderForValue) {
@@ -1471,7 +1542,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder addActions(
           int index, greptime.v1.Wal.ManifestAction.Builder builderForValue) {
@@ -1485,7 +1556,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder addAllActions(
           java.lang.Iterable<? extends greptime.v1.Wal.ManifestAction> values) {
@@ -1500,7 +1571,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder clearActions() {
         if (actionsBuilder_ == null) {
@@ -1513,7 +1584,7 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public Builder removeActions(int index) {
         if (actionsBuilder_ == null) {
@@ -1526,14 +1597,14 @@ public final class Wal {
         return this;
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public greptime.v1.Wal.ManifestAction.Builder getActionsBuilder(
           int index) {
         return getActionsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public greptime.v1.Wal.ManifestActionOrBuilder getActionsOrBuilder(
           int index) {
@@ -1543,7 +1614,7 @@ public final class Wal {
         }
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public java.util.List<? extends greptime.v1.Wal.ManifestActionOrBuilder> 
            getActionsOrBuilderList() {
@@ -1554,14 +1625,14 @@ public final class Wal {
         }
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public greptime.v1.Wal.ManifestAction.Builder addActionsBuilder() {
         return getActionsFieldBuilder().addBuilder(
             greptime.v1.Wal.ManifestAction.getDefaultInstance());
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public greptime.v1.Wal.ManifestAction.Builder addActionsBuilder(
           int index) {
@@ -1569,7 +1640,7 @@ public final class Wal {
             index, greptime.v1.Wal.ManifestAction.getDefaultInstance());
       }
       /**
-       * <code>repeated .greptime.v1.ManifestAction actions = 1;</code>
+       * <code>repeated .greptime.v1.ManifestAction actions = 2;</code>
        */
       public java.util.List<greptime.v1.Wal.ManifestAction.Builder> 
            getActionsBuilderList() {
@@ -3776,17 +3847,17 @@ public final class Wal {
     java.lang.String[] descriptorData = {
       "\n\025greptime/v1/wal.proto\022\013greptime.v1\032\025gr" +
       "eptime/v1/row.proto\"(\n\016ManifestAction\022\016\n" +
-      "\004json\030\001 \001(\tH\000B\006\n\004data\"B\n\022ManifestActionL" +
-      "ist\022,\n\007actions\030\001 \003(\0132\033.greptime.v1.Manif" +
-      "estAction\"\231\001\n\010Mutation\022$\n\007op_type\030\001 \001(\0162" +
-      "\023.greptime.v1.OpType\022\020\n\010sequence\030\002 \001(\004\022\037" +
-      "\n\004rows\030\003 \001(\0132\021.greptime.v1.Rows\0224\n\013actio" +
-      "n_list\030\004 \001(\0132\037.greptime.v1.ManifestActio" +
-      "nList\"4\n\010WalEntry\022(\n\tmutations\030\001 \003(\0132\025.g" +
-      "reptime.v1.Mutation*+\n\006OpType\022\n\n\006DELETE\020" +
-      "\000\022\007\n\003PUT\020\001\022\014\n\010MANIFEST\020\002B7Z5github.com/G" +
-      "reptimeTeam/greptime-proto/go/greptime/v" +
-      "1b\006proto3"
+      "\004json\030\001 \001(\tH\000B\006\n\004data\"\\\n\022ManifestActionL" +
+      "ist\022\030\n\020manifest_version\030\001 \001(\004\022,\n\007actions" +
+      "\030\002 \003(\0132\033.greptime.v1.ManifestAction\"\231\001\n\010" +
+      "Mutation\022$\n\007op_type\030\001 \001(\0162\023.greptime.v1." +
+      "OpType\022\020\n\010sequence\030\002 \001(\004\022\037\n\004rows\030\003 \001(\0132\021" +
+      ".greptime.v1.Rows\0224\n\013action_list\030\004 \001(\0132\037" +
+      ".greptime.v1.ManifestActionList\"4\n\010WalEn" +
+      "try\022(\n\tmutations\030\001 \003(\0132\025.greptime.v1.Mut" +
+      "ation*+\n\006OpType\022\n\n\006DELETE\020\000\022\007\n\003PUT\020\001\022\014\n\010" +
+      "MANIFEST\020\002B7Z5github.com/GreptimeTeam/gr" +
+      "eptime-proto/go/greptime/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3804,7 +3875,7 @@ public final class Wal {
     internal_static_greptime_v1_ManifestActionList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_ManifestActionList_descriptor,
-        new java.lang.String[] { "Actions", });
+        new java.lang.String[] { "ManifestVersion", "Actions", });
     internal_static_greptime_v1_Mutation_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_greptime_v1_Mutation_fieldAccessorTable = new

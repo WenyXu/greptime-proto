@@ -25,7 +25,8 @@ message ManifestAction {
 }
 
 message ManifestActionList {
-  repeated ManifestAction actions = 1;
+  uint64 manifest_version = 1;
+  repeated ManifestAction actions = 2;
 }
 
 // Type of operation to rows.

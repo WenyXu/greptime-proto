@@ -394,9 +394,10 @@ class ManifestActionList final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kActionsFieldNumber = 1,
+    kActionsFieldNumber = 2,
+    kManifestVersionFieldNumber = 1,
   };
-  // repeated .greptime.v1.ManifestAction actions = 1;
+  // repeated .greptime.v1.ManifestAction actions = 2;
   int actions_size() const;
   private:
   int _internal_actions_size() const;
@@ -414,6 +415,15 @@ class ManifestActionList final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction >&
       actions() const;
 
+  // uint64 manifest_version = 1;
+  void clear_manifest_version();
+  uint64_t manifest_version() const;
+  void set_manifest_version(uint64_t value);
+  private:
+  uint64_t _internal_manifest_version() const;
+  void _internal_set_manifest_version(uint64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:greptime.v1.ManifestActionList)
  private:
   class _Internal;
@@ -423,6 +433,7 @@ class ManifestActionList final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::greptime::v1::ManifestAction > actions_;
+    uint64_t manifest_version_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -885,7 +896,27 @@ inline ManifestAction::DataCase ManifestAction::data_case() const {
 
 // ManifestActionList
 
-// repeated .greptime.v1.ManifestAction actions = 1;
+// uint64 manifest_version = 1;
+inline void ManifestActionList::clear_manifest_version() {
+  _impl_.manifest_version_ = uint64_t{0u};
+}
+inline uint64_t ManifestActionList::_internal_manifest_version() const {
+  return _impl_.manifest_version_;
+}
+inline uint64_t ManifestActionList::manifest_version() const {
+  // @@protoc_insertion_point(field_get:greptime.v1.ManifestActionList.manifest_version)
+  return _internal_manifest_version();
+}
+inline void ManifestActionList::_internal_set_manifest_version(uint64_t value) {
+  
+  _impl_.manifest_version_ = value;
+}
+inline void ManifestActionList::set_manifest_version(uint64_t value) {
+  _internal_set_manifest_version(value);
+  // @@protoc_insertion_point(field_set:greptime.v1.ManifestActionList.manifest_version)
+}
+
+// repeated .greptime.v1.ManifestAction actions = 2;
 inline int ManifestActionList::_internal_actions_size() const {
   return _impl_.actions_.size();
 }
