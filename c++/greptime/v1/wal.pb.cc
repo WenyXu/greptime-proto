@@ -22,25 +22,23 @@ namespace _pbi = _pb::internal;
 
 namespace greptime {
 namespace v1 {
-PROTOBUF_CONSTEXPR ManifestActionList::ManifestActionList(
+PROTOBUF_CONSTEXPR ManifestNotification::ManifestNotification(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.manifest_version_)*/uint64_t{0u}
-  , /*decltype(_impl_.data_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
-struct ManifestActionListDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ManifestActionListDefaultTypeInternal()
+    /*decltype(_impl_.version_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ManifestNotificationDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ManifestNotificationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ManifestActionListDefaultTypeInternal() {}
+  ~ManifestNotificationDefaultTypeInternal() {}
   union {
-    ManifestActionList _instance;
+    ManifestNotification _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ManifestActionListDefaultTypeInternal _ManifestActionList_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ManifestNotificationDefaultTypeInternal _ManifestNotification_default_instance_;
 PROTOBUF_CONSTEXPR Mutation::Mutation(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.rows_)*/nullptr
-  , /*decltype(_impl_.action_list_)*/nullptr
+  , /*decltype(_impl_.manifest_notification_)*/nullptr
   , /*decltype(_impl_.sequence_)*/uint64_t{0u}
   , /*decltype(_impl_.op_type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -74,14 +72,12 @@ static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors
 
 const uint32_t TableStruct_greptime_2fv1_2fwal_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::greptime::v1::ManifestActionList, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::ManifestNotification, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::greptime::v1::ManifestActionList, _impl_._oneof_case_[0]),
+  ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::greptime::v1::ManifestActionList, _impl_.manifest_version_),
-  ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::greptime::v1::ManifestActionList, _impl_.data_),
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::ManifestNotification, _impl_.version_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::greptime::v1::Mutation, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -91,7 +87,7 @@ const uint32_t TableStruct_greptime_2fv1_2fwal_2eproto::offsets[] PROTOBUF_SECTI
   PROTOBUF_FIELD_OFFSET(::greptime::v1::Mutation, _impl_.op_type_),
   PROTOBUF_FIELD_OFFSET(::greptime::v1::Mutation, _impl_.sequence_),
   PROTOBUF_FIELD_OFFSET(::greptime::v1::Mutation, _impl_.rows_),
-  PROTOBUF_FIELD_OFFSET(::greptime::v1::Mutation, _impl_.action_list_),
+  PROTOBUF_FIELD_OFFSET(::greptime::v1::Mutation, _impl_.manifest_notification_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::greptime::v1::WalEntry, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -101,37 +97,36 @@ const uint32_t TableStruct_greptime_2fv1_2fwal_2eproto::offsets[] PROTOBUF_SECTI
   PROTOBUF_FIELD_OFFSET(::greptime::v1::WalEntry, _impl_.mutations_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::greptime::v1::ManifestActionList)},
-  { 9, -1, -1, sizeof(::greptime::v1::Mutation)},
-  { 19, -1, -1, sizeof(::greptime::v1::WalEntry)},
+  { 0, -1, -1, sizeof(::greptime::v1::ManifestNotification)},
+  { 7, -1, -1, sizeof(::greptime::v1::Mutation)},
+  { 17, -1, -1, sizeof(::greptime::v1::WalEntry)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::greptime::v1::_ManifestActionList_default_instance_._instance,
+  &::greptime::v1::_ManifestNotification_default_instance_._instance,
   &::greptime::v1::_Mutation_default_instance_._instance,
   &::greptime::v1::_WalEntry_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_greptime_2fv1_2fwal_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\025greptime/v1/wal.proto\022\013greptime.v1\032\025gr"
-  "eptime/v1/row.proto\"F\n\022ManifestActionLis"
-  "t\022\030\n\020manifest_version\030\001 \001(\004\022\016\n\004json\030\002 \001("
-  "\tH\000B\006\n\004data\"\231\001\n\010Mutation\022$\n\007op_type\030\001 \001("
-  "\0162\023.greptime.v1.OpType\022\020\n\010sequence\030\002 \001(\004"
-  "\022\037\n\004rows\030\003 \001(\0132\021.greptime.v1.Rows\0224\n\013act"
-  "ion_list\030\004 \001(\0132\037.greptime.v1.ManifestAct"
-  "ionList\"4\n\010WalEntry\022(\n\tmutations\030\001 \003(\0132\025"
-  ".greptime.v1.Mutation*+\n\006OpType\022\n\n\006DELET"
-  "E\020\000\022\007\n\003PUT\020\001\022\014\n\010MANIFEST\020\002B7Z5github.com"
-  "/GreptimeTeam/greptime-proto/go/greptime"
-  "/v1b\006proto3"
+  "eptime/v1/row.proto\"\'\n\024ManifestNotificat"
+  "ion\022\017\n\007version\030\001 \001(\004\"\245\001\n\010Mutation\022$\n\007op_"
+  "type\030\001 \001(\0162\023.greptime.v1.OpType\022\020\n\010seque"
+  "nce\030\002 \001(\004\022\037\n\004rows\030\003 \001(\0132\021.greptime.v1.Ro"
+  "ws\022@\n\025manifest_notification\030\004 \001(\0132!.grep"
+  "time.v1.ManifestNotification\"4\n\010WalEntry"
+  "\022(\n\tmutations\030\001 \003(\0132\025.greptime.v1.Mutati"
+  "on*)\n\006OpType\022\n\n\006DELETE\020\000\022\007\n\003PUT\020\001\022\n\n\006NOT"
+  "IFY\020\002B7Z5github.com/GreptimeTeam/greptim"
+  "e-proto/go/greptime/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_greptime_2fv1_2fwal_2eproto_deps[1] = {
   &::descriptor_table_greptime_2fv1_2frow_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_greptime_2fv1_2fwal_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_greptime_2fv1_2fwal_2eproto = {
-    false, false, 451, descriptor_table_protodef_greptime_2fv1_2fwal_2eproto,
+    false, false, 430, descriptor_table_protodef_greptime_2fv1_2fwal_2eproto,
     "greptime/v1/wal.proto",
     &descriptor_table_greptime_2fv1_2fwal_2eproto_once, descriptor_table_greptime_2fv1_2fwal_2eproto_deps, 1, 3,
     schemas, file_default_instances, TableStruct_greptime_2fv1_2fwal_2eproto::offsets,
@@ -164,55 +159,40 @@ bool OpType_IsValid(int value) {
 
 // ===================================================================
 
-class ManifestActionList::_Internal {
+class ManifestNotification::_Internal {
  public:
 };
 
-ManifestActionList::ManifestActionList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+ManifestNotification::ManifestNotification(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:greptime.v1.ManifestActionList)
+  // @@protoc_insertion_point(arena_constructor:greptime.v1.ManifestNotification)
 }
-ManifestActionList::ManifestActionList(const ManifestActionList& from)
+ManifestNotification::ManifestNotification(const ManifestNotification& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ManifestActionList* const _this = this; (void)_this;
+  ManifestNotification* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.manifest_version_){}
-    , decltype(_impl_.data_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+      decltype(_impl_.version_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.manifest_version_ = from._impl_.manifest_version_;
-  clear_has_data();
-  switch (from.data_case()) {
-    case kJson: {
-      _this->_internal_set_json(from._internal_json());
-      break;
-    }
-    case DATA_NOT_SET: {
-      break;
-    }
-  }
-  // @@protoc_insertion_point(copy_constructor:greptime.v1.ManifestActionList)
+  _this->_impl_.version_ = from._impl_.version_;
+  // @@protoc_insertion_point(copy_constructor:greptime.v1.ManifestNotification)
 }
 
-inline void ManifestActionList::SharedCtor(
+inline void ManifestNotification::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.manifest_version_){uint64_t{0u}}
-    , decltype(_impl_.data_){}
+      decltype(_impl_.version_){uint64_t{0u}}
     , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
   };
-  clear_has_data();
 }
 
-ManifestActionList::~ManifestActionList() {
-  // @@protoc_insertion_point(destructor:greptime.v1.ManifestActionList)
+ManifestNotification::~ManifestNotification() {
+  // @@protoc_insertion_point(destructor:greptime.v1.ManifestNotification)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -220,64 +200,35 @@ ManifestActionList::~ManifestActionList() {
   SharedDtor();
 }
 
-inline void ManifestActionList::SharedDtor() {
+inline void ManifestNotification::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (has_data()) {
-    clear_data();
-  }
 }
 
-void ManifestActionList::SetCachedSize(int size) const {
+void ManifestNotification::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void ManifestActionList::clear_data() {
-// @@protoc_insertion_point(one_of_clear_start:greptime.v1.ManifestActionList)
-  switch (data_case()) {
-    case kJson: {
-      _impl_.data_.json_.Destroy();
-      break;
-    }
-    case DATA_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = DATA_NOT_SET;
-}
-
-
-void ManifestActionList::Clear() {
-// @@protoc_insertion_point(message_clear_start:greptime.v1.ManifestActionList)
+void ManifestNotification::Clear() {
+// @@protoc_insertion_point(message_clear_start:greptime.v1.ManifestNotification)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.manifest_version_ = uint64_t{0u};
-  clear_data();
+  _impl_.version_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ManifestActionList::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* ManifestNotification::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 manifest_version = 1;
+      // uint64 version = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.manifest_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string json = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_json();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "greptime.v1.ManifestActionList.json"));
         } else
           goto handle_unusual;
         continue;
@@ -304,114 +255,81 @@ failure:
 #undef CHK_
 }
 
-uint8_t* ManifestActionList::_InternalSerialize(
+uint8_t* ManifestNotification::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:greptime.v1.ManifestActionList)
+  // @@protoc_insertion_point(serialize_to_array_start:greptime.v1.ManifestNotification)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 manifest_version = 1;
-  if (this->_internal_manifest_version() != 0) {
+  // uint64 version = 1;
+  if (this->_internal_version() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_manifest_version(), target);
-  }
-
-  // string json = 2;
-  if (_internal_has_json()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_json().data(), static_cast<int>(this->_internal_json().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "greptime.v1.ManifestActionList.json");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_json(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_version(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:greptime.v1.ManifestActionList)
+  // @@protoc_insertion_point(serialize_to_array_end:greptime.v1.ManifestNotification)
   return target;
 }
 
-size_t ManifestActionList::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:greptime.v1.ManifestActionList)
+size_t ManifestNotification::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:greptime.v1.ManifestNotification)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 manifest_version = 1;
-  if (this->_internal_manifest_version() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_manifest_version());
+  // uint64 version = 1;
+  if (this->_internal_version() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_version());
   }
 
-  switch (data_case()) {
-    // string json = 2;
-    case kJson: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_json());
-      break;
-    }
-    case DATA_NOT_SET: {
-      break;
-    }
-  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ManifestActionList::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ManifestNotification::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    ManifestActionList::MergeImpl
+    ManifestNotification::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ManifestActionList::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ManifestNotification::GetClassData() const { return &_class_data_; }
 
 
-void ManifestActionList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ManifestActionList*>(&to_msg);
-  auto& from = static_cast<const ManifestActionList&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:greptime.v1.ManifestActionList)
+void ManifestNotification::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ManifestNotification*>(&to_msg);
+  auto& from = static_cast<const ManifestNotification&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:greptime.v1.ManifestNotification)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_manifest_version() != 0) {
-    _this->_internal_set_manifest_version(from._internal_manifest_version());
-  }
-  switch (from.data_case()) {
-    case kJson: {
-      _this->_internal_set_json(from._internal_json());
-      break;
-    }
-    case DATA_NOT_SET: {
-      break;
-    }
+  if (from._internal_version() != 0) {
+    _this->_internal_set_version(from._internal_version());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ManifestActionList::CopyFrom(const ManifestActionList& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:greptime.v1.ManifestActionList)
+void ManifestNotification::CopyFrom(const ManifestNotification& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:greptime.v1.ManifestNotification)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ManifestActionList::IsInitialized() const {
+bool ManifestNotification::IsInitialized() const {
   return true;
 }
 
-void ManifestActionList::InternalSwap(ManifestActionList* other) {
+void ManifestNotification::InternalSwap(ManifestNotification* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.manifest_version_, other->_impl_.manifest_version_);
-  swap(_impl_.data_, other->_impl_.data_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+  swap(_impl_.version_, other->_impl_.version_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ManifestActionList::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ManifestNotification::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_greptime_2fv1_2fwal_2eproto_getter, &descriptor_table_greptime_2fv1_2fwal_2eproto_once,
       file_level_metadata_greptime_2fv1_2fwal_2eproto[0]);
@@ -422,16 +340,16 @@ void ManifestActionList::InternalSwap(ManifestActionList* other) {
 class Mutation::_Internal {
  public:
   static const ::greptime::v1::Rows& rows(const Mutation* msg);
-  static const ::greptime::v1::ManifestActionList& action_list(const Mutation* msg);
+  static const ::greptime::v1::ManifestNotification& manifest_notification(const Mutation* msg);
 };
 
 const ::greptime::v1::Rows&
 Mutation::_Internal::rows(const Mutation* msg) {
   return *msg->_impl_.rows_;
 }
-const ::greptime::v1::ManifestActionList&
-Mutation::_Internal::action_list(const Mutation* msg) {
-  return *msg->_impl_.action_list_;
+const ::greptime::v1::ManifestNotification&
+Mutation::_Internal::manifest_notification(const Mutation* msg) {
+  return *msg->_impl_.manifest_notification_;
 }
 void Mutation::clear_rows() {
   if (GetArenaForAllocation() == nullptr && _impl_.rows_ != nullptr) {
@@ -450,7 +368,7 @@ Mutation::Mutation(const Mutation& from)
   Mutation* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.rows_){nullptr}
-    , decltype(_impl_.action_list_){nullptr}
+    , decltype(_impl_.manifest_notification_){nullptr}
     , decltype(_impl_.sequence_){}
     , decltype(_impl_.op_type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -459,8 +377,8 @@ Mutation::Mutation(const Mutation& from)
   if (from._internal_has_rows()) {
     _this->_impl_.rows_ = new ::greptime::v1::Rows(*from._impl_.rows_);
   }
-  if (from._internal_has_action_list()) {
-    _this->_impl_.action_list_ = new ::greptime::v1::ManifestActionList(*from._impl_.action_list_);
+  if (from._internal_has_manifest_notification()) {
+    _this->_impl_.manifest_notification_ = new ::greptime::v1::ManifestNotification(*from._impl_.manifest_notification_);
   }
   ::memcpy(&_impl_.sequence_, &from._impl_.sequence_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.op_type_) -
@@ -474,7 +392,7 @@ inline void Mutation::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.rows_){nullptr}
-    , decltype(_impl_.action_list_){nullptr}
+    , decltype(_impl_.manifest_notification_){nullptr}
     , decltype(_impl_.sequence_){uint64_t{0u}}
     , decltype(_impl_.op_type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -493,7 +411,7 @@ Mutation::~Mutation() {
 inline void Mutation::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete _impl_.rows_;
-  if (this != internal_default_instance()) delete _impl_.action_list_;
+  if (this != internal_default_instance()) delete _impl_.manifest_notification_;
 }
 
 void Mutation::SetCachedSize(int size) const {
@@ -510,10 +428,10 @@ void Mutation::Clear() {
     delete _impl_.rows_;
   }
   _impl_.rows_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.action_list_ != nullptr) {
-    delete _impl_.action_list_;
+  if (GetArenaForAllocation() == nullptr && _impl_.manifest_notification_ != nullptr) {
+    delete _impl_.manifest_notification_;
   }
-  _impl_.action_list_ = nullptr;
+  _impl_.manifest_notification_ = nullptr;
   ::memset(&_impl_.sequence_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.op_type_) -
       reinterpret_cast<char*>(&_impl_.sequence_)) + sizeof(_impl_.op_type_));
@@ -551,10 +469,10 @@ const char* Mutation::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
         } else
           goto handle_unusual;
         continue;
-      // .greptime.v1.ManifestActionList action_list = 4;
+      // .greptime.v1.ManifestNotification manifest_notification = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_action_list(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_manifest_notification(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -608,11 +526,11 @@ uint8_t* Mutation::_InternalSerialize(
         _Internal::rows(this).GetCachedSize(), target, stream);
   }
 
-  // .greptime.v1.ManifestActionList action_list = 4;
-  if (this->_internal_has_action_list()) {
+  // .greptime.v1.ManifestNotification manifest_notification = 4;
+  if (this->_internal_has_manifest_notification()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::action_list(this),
-        _Internal::action_list(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(4, _Internal::manifest_notification(this),
+        _Internal::manifest_notification(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -638,11 +556,11 @@ size_t Mutation::ByteSizeLong() const {
         *_impl_.rows_);
   }
 
-  // .greptime.v1.ManifestActionList action_list = 4;
-  if (this->_internal_has_action_list()) {
+  // .greptime.v1.ManifestNotification manifest_notification = 4;
+  if (this->_internal_has_manifest_notification()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.action_list_);
+        *_impl_.manifest_notification_);
   }
 
   // uint64 sequence = 2;
@@ -678,9 +596,9 @@ void Mutation::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
     _this->_internal_mutable_rows()->::greptime::v1::Rows::MergeFrom(
         from._internal_rows());
   }
-  if (from._internal_has_action_list()) {
-    _this->_internal_mutable_action_list()->::greptime::v1::ManifestActionList::MergeFrom(
-        from._internal_action_list());
+  if (from._internal_has_manifest_notification()) {
+    _this->_internal_mutable_manifest_notification()->::greptime::v1::ManifestNotification::MergeFrom(
+        from._internal_manifest_notification());
   }
   if (from._internal_sequence() != 0) {
     _this->_internal_set_sequence(from._internal_sequence());
@@ -908,9 +826,9 @@ void WalEntry::InternalSwap(WalEntry* other) {
 }  // namespace v1
 }  // namespace greptime
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::greptime::v1::ManifestActionList*
-Arena::CreateMaybeMessage< ::greptime::v1::ManifestActionList >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::greptime::v1::ManifestActionList >(arena);
+template<> PROTOBUF_NOINLINE ::greptime::v1::ManifestNotification*
+Arena::CreateMaybeMessage< ::greptime::v1::ManifestNotification >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::greptime::v1::ManifestNotification >(arena);
 }
 template<> PROTOBUF_NOINLINE ::greptime::v1::Mutation*
 Arena::CreateMaybeMessage< ::greptime::v1::Mutation >(Arena* arena) {

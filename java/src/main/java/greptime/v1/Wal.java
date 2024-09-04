@@ -41,12 +41,12 @@ public final class Wal {
     PUT(1),
     /**
      * <pre>
-     * Manifest actions.
+     * Notify manifest changes.
      * </pre>
      *
-     * <code>MANIFEST = 2;</code>
+     * <code>NOTIFY = 2;</code>
      */
-    MANIFEST(2),
+    NOTIFY(2),
     UNRECOGNIZED(-1),
     ;
 
@@ -68,12 +68,12 @@ public final class Wal {
     public static final int PUT_VALUE = 1;
     /**
      * <pre>
-     * Manifest actions.
+     * Notify manifest changes.
      * </pre>
      *
-     * <code>MANIFEST = 2;</code>
+     * <code>NOTIFY = 2;</code>
      */
-    public static final int MANIFEST_VALUE = 2;
+    public static final int NOTIFY_VALUE = 2;
 
 
     public final int getNumber() {
@@ -102,7 +102,7 @@ public final class Wal {
       switch (value) {
         case 0: return DELETE;
         case 1: return PUT;
-        case 2: return MANIFEST;
+        case 2: return NOTIFY;
         default: return null;
       }
     }
@@ -159,55 +159,40 @@ public final class Wal {
     // @@protoc_insertion_point(enum_scope:greptime.v1.OpType)
   }
 
-  public interface ManifestActionListOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:greptime.v1.ManifestActionList)
+  public interface ManifestNotificationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:greptime.v1.ManifestNotification)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 manifest_version = 1;</code>
-     * @return The manifestVersion.
+     * <code>uint64 version = 1;</code>
+     * @return The version.
      */
-    long getManifestVersion();
-
-    /**
-     * <code>string json = 2;</code>
-     * @return Whether the json field is set.
-     */
-    boolean hasJson();
-    /**
-     * <code>string json = 2;</code>
-     * @return The json.
-     */
-    java.lang.String getJson();
-    /**
-     * <code>string json = 2;</code>
-     * @return The bytes for json.
-     */
-    com.google.protobuf.ByteString
-        getJsonBytes();
-
-    public greptime.v1.Wal.ManifestActionList.DataCase getDataCase();
+    long getVersion();
   }
   /**
-   * Protobuf type {@code greptime.v1.ManifestActionList}
+   * <pre>
+   * The manfeist notification content.
+   * </pre>
+   *
+   * Protobuf type {@code greptime.v1.ManifestNotification}
    */
-  public static final class ManifestActionList extends
+  public static final class ManifestNotification extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:greptime.v1.ManifestActionList)
-      ManifestActionListOrBuilder {
+      // @@protoc_insertion_point(message_implements:greptime.v1.ManifestNotification)
+      ManifestNotificationOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ManifestActionList.newBuilder() to construct.
-    private ManifestActionList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ManifestNotification.newBuilder() to construct.
+    private ManifestNotification(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ManifestActionList() {
+    private ManifestNotification() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ManifestActionList();
+      return new ManifestNotification();
     }
 
     @java.lang.Override
@@ -215,7 +200,7 @@ public final class Wal {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ManifestActionList(
+    private ManifestNotification(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -235,13 +220,7 @@ public final class Wal {
               break;
             case 8: {
 
-              manifestVersion_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-              dataCase_ = 2;
-              data_ = s;
+              version_ = input.readUInt64();
               break;
             }
             default: {
@@ -267,117 +246,26 @@ public final class Wal {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_descriptor;
+      return greptime.v1.Wal.internal_static_greptime_v1_ManifestNotification_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_fieldAccessorTable
+      return greptime.v1.Wal.internal_static_greptime_v1_ManifestNotification_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              greptime.v1.Wal.ManifestActionList.class, greptime.v1.Wal.ManifestActionList.Builder.class);
+              greptime.v1.Wal.ManifestNotification.class, greptime.v1.Wal.ManifestNotification.Builder.class);
     }
 
-    private int dataCase_ = 0;
-    private java.lang.Object data_;
-    public enum DataCase
-        implements com.google.protobuf.Internal.EnumLite,
-            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-      JSON(2),
-      DATA_NOT_SET(0);
-      private final int value;
-      private DataCase(int value) {
-        this.value = value;
-      }
-      /**
-       * @param value The number of the enum to look for.
-       * @return The enum associated with the given number.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static DataCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static DataCase forNumber(int value) {
-        switch (value) {
-          case 2: return JSON;
-          case 0: return DATA_NOT_SET;
-          default: return null;
-        }
-      }
-      public int getNumber() {
-        return this.value;
-      }
-    };
-
-    public DataCase
-    getDataCase() {
-      return DataCase.forNumber(
-          dataCase_);
-    }
-
-    public static final int MANIFEST_VERSION_FIELD_NUMBER = 1;
-    private long manifestVersion_;
+    public static final int VERSION_FIELD_NUMBER = 1;
+    private long version_;
     /**
-     * <code>uint64 manifest_version = 1;</code>
-     * @return The manifestVersion.
+     * <code>uint64 version = 1;</code>
+     * @return The version.
      */
     @java.lang.Override
-    public long getManifestVersion() {
-      return manifestVersion_;
-    }
-
-    public static final int JSON_FIELD_NUMBER = 2;
-    /**
-     * <code>string json = 2;</code>
-     * @return Whether the json field is set.
-     */
-    public boolean hasJson() {
-      return dataCase_ == 2;
-    }
-    /**
-     * <code>string json = 2;</code>
-     * @return The json.
-     */
-    public java.lang.String getJson() {
-      java.lang.Object ref = "";
-      if (dataCase_ == 2) {
-        ref = data_;
-      }
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (dataCase_ == 2) {
-          data_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>string json = 2;</code>
-     * @return The bytes for json.
-     */
-    public com.google.protobuf.ByteString
-        getJsonBytes() {
-      java.lang.Object ref = "";
-      if (dataCase_ == 2) {
-        ref = data_;
-      }
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        if (dataCase_ == 2) {
-          data_ = b;
-        }
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public long getVersion() {
+      return version_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -394,11 +282,8 @@ public final class Wal {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (manifestVersion_ != 0L) {
-        output.writeUInt64(1, manifestVersion_);
-      }
-      if (dataCase_ == 2) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, data_);
+      if (version_ != 0L) {
+        output.writeUInt64(1, version_);
       }
       unknownFields.writeTo(output);
     }
@@ -409,12 +294,9 @@ public final class Wal {
       if (size != -1) return size;
 
       size = 0;
-      if (manifestVersion_ != 0L) {
+      if (version_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, manifestVersion_);
-      }
-      if (dataCase_ == 2) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, data_);
+          .computeUInt64Size(1, version_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -426,22 +308,13 @@ public final class Wal {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof greptime.v1.Wal.ManifestActionList)) {
+      if (!(obj instanceof greptime.v1.Wal.ManifestNotification)) {
         return super.equals(obj);
       }
-      greptime.v1.Wal.ManifestActionList other = (greptime.v1.Wal.ManifestActionList) obj;
+      greptime.v1.Wal.ManifestNotification other = (greptime.v1.Wal.ManifestNotification) obj;
 
-      if (getManifestVersion()
-          != other.getManifestVersion()) return false;
-      if (!getDataCase().equals(other.getDataCase())) return false;
-      switch (dataCase_) {
-        case 2:
-          if (!getJson()
-              .equals(other.getJson())) return false;
-          break;
-        case 0:
-        default:
-      }
+      if (getVersion()
+          != other.getVersion()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -453,85 +326,77 @@ public final class Wal {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MANIFEST_VERSION_FIELD_NUMBER;
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getManifestVersion());
-      switch (dataCase_) {
-        case 2:
-          hash = (37 * hash) + JSON_FIELD_NUMBER;
-          hash = (53 * hash) + getJson().hashCode();
-          break;
-        case 0:
-        default:
-      }
+          getVersion());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(byte[] data)
+    public static greptime.v1.Wal.ManifestNotification parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(java.io.InputStream input)
+    public static greptime.v1.Wal.ManifestNotification parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static greptime.v1.Wal.ManifestActionList parseDelimitedFrom(java.io.InputStream input)
+    public static greptime.v1.Wal.ManifestNotification parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static greptime.v1.Wal.ManifestActionList parseDelimitedFrom(
+    public static greptime.v1.Wal.ManifestNotification parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static greptime.v1.Wal.ManifestActionList parseFrom(
+    public static greptime.v1.Wal.ManifestNotification parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -544,7 +409,7 @@ public final class Wal {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(greptime.v1.Wal.ManifestActionList prototype) {
+    public static Builder newBuilder(greptime.v1.Wal.ManifestNotification prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -560,26 +425,30 @@ public final class Wal {
       return builder;
     }
     /**
-     * Protobuf type {@code greptime.v1.ManifestActionList}
+     * <pre>
+     * The manfeist notification content.
+     * </pre>
+     *
+     * Protobuf type {@code greptime.v1.ManifestNotification}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:greptime.v1.ManifestActionList)
-        greptime.v1.Wal.ManifestActionListOrBuilder {
+        // @@protoc_insertion_point(builder_implements:greptime.v1.ManifestNotification)
+        greptime.v1.Wal.ManifestNotificationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_descriptor;
+        return greptime.v1.Wal.internal_static_greptime_v1_ManifestNotification_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_fieldAccessorTable
+        return greptime.v1.Wal.internal_static_greptime_v1_ManifestNotification_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                greptime.v1.Wal.ManifestActionList.class, greptime.v1.Wal.ManifestActionList.Builder.class);
+                greptime.v1.Wal.ManifestNotification.class, greptime.v1.Wal.ManifestNotification.Builder.class);
       }
 
-      // Construct using greptime.v1.Wal.ManifestActionList.newBuilder()
+      // Construct using greptime.v1.Wal.ManifestNotification.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -597,27 +466,25 @@ public final class Wal {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        manifestVersion_ = 0L;
+        version_ = 0L;
 
-        dataCase_ = 0;
-        data_ = null;
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return greptime.v1.Wal.internal_static_greptime_v1_ManifestActionList_descriptor;
+        return greptime.v1.Wal.internal_static_greptime_v1_ManifestNotification_descriptor;
       }
 
       @java.lang.Override
-      public greptime.v1.Wal.ManifestActionList getDefaultInstanceForType() {
-        return greptime.v1.Wal.ManifestActionList.getDefaultInstance();
+      public greptime.v1.Wal.ManifestNotification getDefaultInstanceForType() {
+        return greptime.v1.Wal.ManifestNotification.getDefaultInstance();
       }
 
       @java.lang.Override
-      public greptime.v1.Wal.ManifestActionList build() {
-        greptime.v1.Wal.ManifestActionList result = buildPartial();
+      public greptime.v1.Wal.ManifestNotification build() {
+        greptime.v1.Wal.ManifestNotification result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -625,13 +492,9 @@ public final class Wal {
       }
 
       @java.lang.Override
-      public greptime.v1.Wal.ManifestActionList buildPartial() {
-        greptime.v1.Wal.ManifestActionList result = new greptime.v1.Wal.ManifestActionList(this);
-        result.manifestVersion_ = manifestVersion_;
-        if (dataCase_ == 2) {
-          result.data_ = data_;
-        }
-        result.dataCase_ = dataCase_;
+      public greptime.v1.Wal.ManifestNotification buildPartial() {
+        greptime.v1.Wal.ManifestNotification result = new greptime.v1.Wal.ManifestNotification(this);
+        result.version_ = version_;
         onBuilt();
         return result;
       }
@@ -670,29 +533,18 @@ public final class Wal {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof greptime.v1.Wal.ManifestActionList) {
-          return mergeFrom((greptime.v1.Wal.ManifestActionList)other);
+        if (other instanceof greptime.v1.Wal.ManifestNotification) {
+          return mergeFrom((greptime.v1.Wal.ManifestNotification)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(greptime.v1.Wal.ManifestActionList other) {
-        if (other == greptime.v1.Wal.ManifestActionList.getDefaultInstance()) return this;
-        if (other.getManifestVersion() != 0L) {
-          setManifestVersion(other.getManifestVersion());
-        }
-        switch (other.getDataCase()) {
-          case JSON: {
-            dataCase_ = 2;
-            data_ = other.data_;
-            onChanged();
-            break;
-          }
-          case DATA_NOT_SET: {
-            break;
-          }
+      public Builder mergeFrom(greptime.v1.Wal.ManifestNotification other) {
+        if (other == greptime.v1.Wal.ManifestNotification.getDefaultInstance()) return this;
+        if (other.getVersion() != 0L) {
+          setVersion(other.getVersion());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -709,11 +561,11 @@ public final class Wal {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        greptime.v1.Wal.ManifestActionList parsedMessage = null;
+        greptime.v1.Wal.ManifestNotification parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (greptime.v1.Wal.ManifestActionList) e.getUnfinishedMessage();
+          parsedMessage = (greptime.v1.Wal.ManifestNotification) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -722,146 +574,34 @@ public final class Wal {
         }
         return this;
       }
-      private int dataCase_ = 0;
-      private java.lang.Object data_;
-      public DataCase
-          getDataCase() {
-        return DataCase.forNumber(
-            dataCase_);
-      }
 
-      public Builder clearData() {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-        return this;
-      }
-
-
-      private long manifestVersion_ ;
+      private long version_ ;
       /**
-       * <code>uint64 manifest_version = 1;</code>
-       * @return The manifestVersion.
+       * <code>uint64 version = 1;</code>
+       * @return The version.
        */
       @java.lang.Override
-      public long getManifestVersion() {
-        return manifestVersion_;
+      public long getVersion() {
+        return version_;
       }
       /**
-       * <code>uint64 manifest_version = 1;</code>
-       * @param value The manifestVersion to set.
+       * <code>uint64 version = 1;</code>
+       * @param value The version to set.
        * @return This builder for chaining.
        */
-      public Builder setManifestVersion(long value) {
+      public Builder setVersion(long value) {
         
-        manifestVersion_ = value;
+        version_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 manifest_version = 1;</code>
+       * <code>uint64 version = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearManifestVersion() {
+      public Builder clearVersion() {
         
-        manifestVersion_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      /**
-       * <code>string json = 2;</code>
-       * @return Whether the json field is set.
-       */
-      @java.lang.Override
-      public boolean hasJson() {
-        return dataCase_ == 2;
-      }
-      /**
-       * <code>string json = 2;</code>
-       * @return The json.
-       */
-      @java.lang.Override
-      public java.lang.String getJson() {
-        java.lang.Object ref = "";
-        if (dataCase_ == 2) {
-          ref = data_;
-        }
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (dataCase_ == 2) {
-            data_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string json = 2;</code>
-       * @return The bytes for json.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-          getJsonBytes() {
-        java.lang.Object ref = "";
-        if (dataCase_ == 2) {
-          ref = data_;
-        }
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          if (dataCase_ == 2) {
-            data_ = b;
-          }
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string json = 2;</code>
-       * @param value The json to set.
-       * @return This builder for chaining.
-       */
-      public Builder setJson(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  dataCase_ = 2;
-        data_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string json = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearJson() {
-        if (dataCase_ == 2) {
-          dataCase_ = 0;
-          data_ = null;
-          onChanged();
-        }
-        return this;
-      }
-      /**
-       * <code>string json = 2;</code>
-       * @param value The bytes for json to set.
-       * @return This builder for chaining.
-       */
-      public Builder setJsonBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        dataCase_ = 2;
-        data_ = value;
+        version_ = 0L;
         onChanged();
         return this;
       }
@@ -878,41 +618,41 @@ public final class Wal {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:greptime.v1.ManifestActionList)
+      // @@protoc_insertion_point(builder_scope:greptime.v1.ManifestNotification)
     }
 
-    // @@protoc_insertion_point(class_scope:greptime.v1.ManifestActionList)
-    private static final greptime.v1.Wal.ManifestActionList DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:greptime.v1.ManifestNotification)
+    private static final greptime.v1.Wal.ManifestNotification DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new greptime.v1.Wal.ManifestActionList();
+      DEFAULT_INSTANCE = new greptime.v1.Wal.ManifestNotification();
     }
 
-    public static greptime.v1.Wal.ManifestActionList getDefaultInstance() {
+    public static greptime.v1.Wal.ManifestNotification getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ManifestActionList>
-        PARSER = new com.google.protobuf.AbstractParser<ManifestActionList>() {
+    private static final com.google.protobuf.Parser<ManifestNotification>
+        PARSER = new com.google.protobuf.AbstractParser<ManifestNotification>() {
       @java.lang.Override
-      public ManifestActionList parsePartialFrom(
+      public ManifestNotification parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ManifestActionList(input, extensionRegistry);
+        return new ManifestNotification(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ManifestActionList> parser() {
+    public static com.google.protobuf.Parser<ManifestNotification> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ManifestActionList> getParserForType() {
+    public com.google.protobuf.Parser<ManifestNotification> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public greptime.v1.Wal.ManifestActionList getDefaultInstanceForType() {
+    public greptime.v1.Wal.ManifestNotification getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -980,30 +720,30 @@ public final class Wal {
 
     /**
      * <pre>
-     * Manifest action list
+     * The manifest change notification
      * </pre>
      *
-     * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
-     * @return Whether the actionList field is set.
+     * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
+     * @return Whether the manifestNotification field is set.
      */
-    boolean hasActionList();
+    boolean hasManifestNotification();
     /**
      * <pre>
-     * Manifest action list
+     * The manifest change notification
      * </pre>
      *
-     * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
-     * @return The actionList.
+     * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
+     * @return The manifestNotification.
      */
-    greptime.v1.Wal.ManifestActionList getActionList();
+    greptime.v1.Wal.ManifestNotification getManifestNotification();
     /**
      * <pre>
-     * Manifest action list
+     * The manifest change notification
      * </pre>
      *
-     * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+     * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
      */
-    greptime.v1.Wal.ManifestActionListOrBuilder getActionListOrBuilder();
+    greptime.v1.Wal.ManifestNotificationOrBuilder getManifestNotificationOrBuilder();
   }
   /**
    * <pre>
@@ -1080,14 +820,14 @@ public final class Wal {
               break;
             }
             case 34: {
-              greptime.v1.Wal.ManifestActionList.Builder subBuilder = null;
-              if (actionList_ != null) {
-                subBuilder = actionList_.toBuilder();
+              greptime.v1.Wal.ManifestNotification.Builder subBuilder = null;
+              if (manifestNotification_ != null) {
+                subBuilder = manifestNotification_.toBuilder();
               }
-              actionList_ = input.readMessage(greptime.v1.Wal.ManifestActionList.parser(), extensionRegistry);
+              manifestNotification_ = input.readMessage(greptime.v1.Wal.ManifestNotification.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(actionList_);
-                actionList_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(manifestNotification_);
+                manifestNotification_ = subBuilder.buildPartial();
               }
 
               break;
@@ -1206,42 +946,42 @@ public final class Wal {
       return getRows();
     }
 
-    public static final int ACTION_LIST_FIELD_NUMBER = 4;
-    private greptime.v1.Wal.ManifestActionList actionList_;
+    public static final int MANIFEST_NOTIFICATION_FIELD_NUMBER = 4;
+    private greptime.v1.Wal.ManifestNotification manifestNotification_;
     /**
      * <pre>
-     * Manifest action list
+     * The manifest change notification
      * </pre>
      *
-     * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
-     * @return Whether the actionList field is set.
+     * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
+     * @return Whether the manifestNotification field is set.
      */
     @java.lang.Override
-    public boolean hasActionList() {
-      return actionList_ != null;
+    public boolean hasManifestNotification() {
+      return manifestNotification_ != null;
     }
     /**
      * <pre>
-     * Manifest action list
+     * The manifest change notification
      * </pre>
      *
-     * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
-     * @return The actionList.
+     * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
+     * @return The manifestNotification.
      */
     @java.lang.Override
-    public greptime.v1.Wal.ManifestActionList getActionList() {
-      return actionList_ == null ? greptime.v1.Wal.ManifestActionList.getDefaultInstance() : actionList_;
+    public greptime.v1.Wal.ManifestNotification getManifestNotification() {
+      return manifestNotification_ == null ? greptime.v1.Wal.ManifestNotification.getDefaultInstance() : manifestNotification_;
     }
     /**
      * <pre>
-     * Manifest action list
+     * The manifest change notification
      * </pre>
      *
-     * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+     * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
      */
     @java.lang.Override
-    public greptime.v1.Wal.ManifestActionListOrBuilder getActionListOrBuilder() {
-      return getActionList();
+    public greptime.v1.Wal.ManifestNotificationOrBuilder getManifestNotificationOrBuilder() {
+      return getManifestNotification();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1267,8 +1007,8 @@ public final class Wal {
       if (rows_ != null) {
         output.writeMessage(3, getRows());
       }
-      if (actionList_ != null) {
-        output.writeMessage(4, getActionList());
+      if (manifestNotification_ != null) {
+        output.writeMessage(4, getManifestNotification());
       }
       unknownFields.writeTo(output);
     }
@@ -1291,9 +1031,9 @@ public final class Wal {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getRows());
       }
-      if (actionList_ != null) {
+      if (manifestNotification_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getActionList());
+          .computeMessageSize(4, getManifestNotification());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1318,10 +1058,10 @@ public final class Wal {
         if (!getRows()
             .equals(other.getRows())) return false;
       }
-      if (hasActionList() != other.hasActionList()) return false;
-      if (hasActionList()) {
-        if (!getActionList()
-            .equals(other.getActionList())) return false;
+      if (hasManifestNotification() != other.hasManifestNotification()) return false;
+      if (hasManifestNotification()) {
+        if (!getManifestNotification()
+            .equals(other.getManifestNotification())) return false;
       }
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -1343,9 +1083,9 @@ public final class Wal {
         hash = (37 * hash) + ROWS_FIELD_NUMBER;
         hash = (53 * hash) + getRows().hashCode();
       }
-      if (hasActionList()) {
-        hash = (37 * hash) + ACTION_LIST_FIELD_NUMBER;
-        hash = (53 * hash) + getActionList().hashCode();
+      if (hasManifestNotification()) {
+        hash = (37 * hash) + MANIFEST_NOTIFICATION_FIELD_NUMBER;
+        hash = (53 * hash) + getManifestNotification().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1494,11 +1234,11 @@ public final class Wal {
           rows_ = null;
           rowsBuilder_ = null;
         }
-        if (actionListBuilder_ == null) {
-          actionList_ = null;
+        if (manifestNotificationBuilder_ == null) {
+          manifestNotification_ = null;
         } else {
-          actionList_ = null;
-          actionListBuilder_ = null;
+          manifestNotification_ = null;
+          manifestNotificationBuilder_ = null;
         }
         return this;
       }
@@ -1533,10 +1273,10 @@ public final class Wal {
         } else {
           result.rows_ = rowsBuilder_.build();
         }
-        if (actionListBuilder_ == null) {
-          result.actionList_ = actionList_;
+        if (manifestNotificationBuilder_ == null) {
+          result.manifestNotification_ = manifestNotification_;
         } else {
-          result.actionList_ = actionListBuilder_.build();
+          result.manifestNotification_ = manifestNotificationBuilder_.build();
         }
         onBuilt();
         return result;
@@ -1595,8 +1335,8 @@ public final class Wal {
         if (other.hasRows()) {
           mergeRows(other.getRows());
         }
-        if (other.hasActionList()) {
-          mergeActionList(other.getActionList());
+        if (other.hasManifestNotification()) {
+          mergeManifestNotification(other.getManifestNotification());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1899,159 +1639,159 @@ public final class Wal {
         return rowsBuilder_;
       }
 
-      private greptime.v1.Wal.ManifestActionList actionList_;
+      private greptime.v1.Wal.ManifestNotification manifestNotification_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          greptime.v1.Wal.ManifestActionList, greptime.v1.Wal.ManifestActionList.Builder, greptime.v1.Wal.ManifestActionListOrBuilder> actionListBuilder_;
+          greptime.v1.Wal.ManifestNotification, greptime.v1.Wal.ManifestNotification.Builder, greptime.v1.Wal.ManifestNotificationOrBuilder> manifestNotificationBuilder_;
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
-       * @return Whether the actionList field is set.
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
+       * @return Whether the manifestNotification field is set.
        */
-      public boolean hasActionList() {
-        return actionListBuilder_ != null || actionList_ != null;
+      public boolean hasManifestNotification() {
+        return manifestNotificationBuilder_ != null || manifestNotification_ != null;
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
-       * @return The actionList.
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
+       * @return The manifestNotification.
        */
-      public greptime.v1.Wal.ManifestActionList getActionList() {
-        if (actionListBuilder_ == null) {
-          return actionList_ == null ? greptime.v1.Wal.ManifestActionList.getDefaultInstance() : actionList_;
+      public greptime.v1.Wal.ManifestNotification getManifestNotification() {
+        if (manifestNotificationBuilder_ == null) {
+          return manifestNotification_ == null ? greptime.v1.Wal.ManifestNotification.getDefaultInstance() : manifestNotification_;
         } else {
-          return actionListBuilder_.getMessage();
+          return manifestNotificationBuilder_.getMessage();
         }
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
-      public Builder setActionList(greptime.v1.Wal.ManifestActionList value) {
-        if (actionListBuilder_ == null) {
+      public Builder setManifestNotification(greptime.v1.Wal.ManifestNotification value) {
+        if (manifestNotificationBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          actionList_ = value;
+          manifestNotification_ = value;
           onChanged();
         } else {
-          actionListBuilder_.setMessage(value);
+          manifestNotificationBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
-      public Builder setActionList(
-          greptime.v1.Wal.ManifestActionList.Builder builderForValue) {
-        if (actionListBuilder_ == null) {
-          actionList_ = builderForValue.build();
+      public Builder setManifestNotification(
+          greptime.v1.Wal.ManifestNotification.Builder builderForValue) {
+        if (manifestNotificationBuilder_ == null) {
+          manifestNotification_ = builderForValue.build();
           onChanged();
         } else {
-          actionListBuilder_.setMessage(builderForValue.build());
+          manifestNotificationBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
-      public Builder mergeActionList(greptime.v1.Wal.ManifestActionList value) {
-        if (actionListBuilder_ == null) {
-          if (actionList_ != null) {
-            actionList_ =
-              greptime.v1.Wal.ManifestActionList.newBuilder(actionList_).mergeFrom(value).buildPartial();
+      public Builder mergeManifestNotification(greptime.v1.Wal.ManifestNotification value) {
+        if (manifestNotificationBuilder_ == null) {
+          if (manifestNotification_ != null) {
+            manifestNotification_ =
+              greptime.v1.Wal.ManifestNotification.newBuilder(manifestNotification_).mergeFrom(value).buildPartial();
           } else {
-            actionList_ = value;
+            manifestNotification_ = value;
           }
           onChanged();
         } else {
-          actionListBuilder_.mergeFrom(value);
+          manifestNotificationBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
-      public Builder clearActionList() {
-        if (actionListBuilder_ == null) {
-          actionList_ = null;
+      public Builder clearManifestNotification() {
+        if (manifestNotificationBuilder_ == null) {
+          manifestNotification_ = null;
           onChanged();
         } else {
-          actionList_ = null;
-          actionListBuilder_ = null;
+          manifestNotification_ = null;
+          manifestNotificationBuilder_ = null;
         }
 
         return this;
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
-      public greptime.v1.Wal.ManifestActionList.Builder getActionListBuilder() {
+      public greptime.v1.Wal.ManifestNotification.Builder getManifestNotificationBuilder() {
         
         onChanged();
-        return getActionListFieldBuilder().getBuilder();
+        return getManifestNotificationFieldBuilder().getBuilder();
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
-      public greptime.v1.Wal.ManifestActionListOrBuilder getActionListOrBuilder() {
-        if (actionListBuilder_ != null) {
-          return actionListBuilder_.getMessageOrBuilder();
+      public greptime.v1.Wal.ManifestNotificationOrBuilder getManifestNotificationOrBuilder() {
+        if (manifestNotificationBuilder_ != null) {
+          return manifestNotificationBuilder_.getMessageOrBuilder();
         } else {
-          return actionList_ == null ?
-              greptime.v1.Wal.ManifestActionList.getDefaultInstance() : actionList_;
+          return manifestNotification_ == null ?
+              greptime.v1.Wal.ManifestNotification.getDefaultInstance() : manifestNotification_;
         }
       }
       /**
        * <pre>
-       * Manifest action list
+       * The manifest change notification
        * </pre>
        *
-       * <code>.greptime.v1.ManifestActionList action_list = 4;</code>
+       * <code>.greptime.v1.ManifestNotification manifest_notification = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          greptime.v1.Wal.ManifestActionList, greptime.v1.Wal.ManifestActionList.Builder, greptime.v1.Wal.ManifestActionListOrBuilder> 
-          getActionListFieldBuilder() {
-        if (actionListBuilder_ == null) {
-          actionListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              greptime.v1.Wal.ManifestActionList, greptime.v1.Wal.ManifestActionList.Builder, greptime.v1.Wal.ManifestActionListOrBuilder>(
-                  getActionList(),
+          greptime.v1.Wal.ManifestNotification, greptime.v1.Wal.ManifestNotification.Builder, greptime.v1.Wal.ManifestNotificationOrBuilder> 
+          getManifestNotificationFieldBuilder() {
+        if (manifestNotificationBuilder_ == null) {
+          manifestNotificationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              greptime.v1.Wal.ManifestNotification, greptime.v1.Wal.ManifestNotification.Builder, greptime.v1.Wal.ManifestNotificationOrBuilder>(
+                  getManifestNotification(),
                   getParentForChildren(),
                   isClean());
-          actionList_ = null;
+          manifestNotification_ = null;
         }
-        return actionListBuilder_;
+        return manifestNotificationBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -3022,10 +2762,10 @@ public final class Wal {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_greptime_v1_ManifestActionList_descriptor;
+    internal_static_greptime_v1_ManifestNotification_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_greptime_v1_ManifestActionList_fieldAccessorTable;
+      internal_static_greptime_v1_ManifestNotification_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_greptime_v1_Mutation_descriptor;
   private static final 
@@ -3046,35 +2786,34 @@ public final class Wal {
   static {
     java.lang.String[] descriptorData = {
       "\n\025greptime/v1/wal.proto\022\013greptime.v1\032\025gr" +
-      "eptime/v1/row.proto\"F\n\022ManifestActionLis" +
-      "t\022\030\n\020manifest_version\030\001 \001(\004\022\016\n\004json\030\002 \001(" +
-      "\tH\000B\006\n\004data\"\231\001\n\010Mutation\022$\n\007op_type\030\001 \001(" +
-      "\0162\023.greptime.v1.OpType\022\020\n\010sequence\030\002 \001(\004" +
-      "\022\037\n\004rows\030\003 \001(\0132\021.greptime.v1.Rows\0224\n\013act" +
-      "ion_list\030\004 \001(\0132\037.greptime.v1.ManifestAct" +
-      "ionList\"4\n\010WalEntry\022(\n\tmutations\030\001 \003(\0132\025" +
-      ".greptime.v1.Mutation*+\n\006OpType\022\n\n\006DELET" +
-      "E\020\000\022\007\n\003PUT\020\001\022\014\n\010MANIFEST\020\002B7Z5github.com" +
-      "/GreptimeTeam/greptime-proto/go/greptime" +
-      "/v1b\006proto3"
+      "eptime/v1/row.proto\"\'\n\024ManifestNotificat" +
+      "ion\022\017\n\007version\030\001 \001(\004\"\245\001\n\010Mutation\022$\n\007op_" +
+      "type\030\001 \001(\0162\023.greptime.v1.OpType\022\020\n\010seque" +
+      "nce\030\002 \001(\004\022\037\n\004rows\030\003 \001(\0132\021.greptime.v1.Ro" +
+      "ws\022@\n\025manifest_notification\030\004 \001(\0132!.grep" +
+      "time.v1.ManifestNotification\"4\n\010WalEntry" +
+      "\022(\n\tmutations\030\001 \003(\0132\025.greptime.v1.Mutati" +
+      "on*)\n\006OpType\022\n\n\006DELETE\020\000\022\007\n\003PUT\020\001\022\n\n\006NOT" +
+      "IFY\020\002B7Z5github.com/GreptimeTeam/greptim" +
+      "e-proto/go/greptime/v1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           io.greptime.v1.RowData.getDescriptor(),
         });
-    internal_static_greptime_v1_ManifestActionList_descriptor =
+    internal_static_greptime_v1_ManifestNotification_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_greptime_v1_ManifestActionList_fieldAccessorTable = new
+    internal_static_greptime_v1_ManifestNotification_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_greptime_v1_ManifestActionList_descriptor,
-        new java.lang.String[] { "ManifestVersion", "Json", "Data", });
+        internal_static_greptime_v1_ManifestNotification_descriptor,
+        new java.lang.String[] { "Version", });
     internal_static_greptime_v1_Mutation_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_greptime_v1_Mutation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_greptime_v1_Mutation_descriptor,
-        new java.lang.String[] { "OpType", "Sequence", "Rows", "ActionList", });
+        new java.lang.String[] { "OpType", "Sequence", "Rows", "ManifestNotification", });
     internal_static_greptime_v1_WalEntry_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_greptime_v1_WalEntry_fieldAccessorTable = new
