@@ -154,7 +154,7 @@ impl HeartbeatResponse {
         false
     }
 }
-macro_rules! gen_set_header {
+macro_rules! gen_get_set_header {
     ($req: ty) => {
         impl $req {
             #[inline]
@@ -175,24 +175,29 @@ macro_rules! gen_set_header {
                     }
                 }
             }
+
+            #[inline]
+            pub fn get_header(&self) -> Option<&RequestHeader> {
+                self.header.as_ref()
+            }
         }
     };
 }
 
-gen_set_header!(HeartbeatRequest);
-gen_set_header!(RangeRequest);
-gen_set_header!(PutRequest);
-gen_set_header!(BatchGetRequest);
-gen_set_header!(BatchPutRequest);
-gen_set_header!(BatchDeleteRequest);
-gen_set_header!(CompareAndPutRequest);
-gen_set_header!(DeleteRangeRequest);
-gen_set_header!(LockRequest);
-gen_set_header!(UnlockRequest);
-gen_set_header!(DdlTaskRequest);
-gen_set_header!(MigrateRegionRequest);
-gen_set_header!(QueryProcedureRequest);
-gen_set_header!(ProcedureDetailRequest);
+gen_get_set_header!(HeartbeatRequest);
+gen_get_set_header!(RangeRequest);
+gen_get_set_header!(PutRequest);
+gen_get_set_header!(BatchGetRequest);
+gen_get_set_header!(BatchPutRequest);
+gen_get_set_header!(BatchDeleteRequest);
+gen_get_set_header!(CompareAndPutRequest);
+gen_get_set_header!(DeleteRangeRequest);
+gen_get_set_header!(LockRequest);
+gen_get_set_header!(UnlockRequest);
+gen_get_set_header!(DdlTaskRequest);
+gen_get_set_header!(MigrateRegionRequest);
+gen_get_set_header!(QueryProcedureRequest);
+gen_get_set_header!(ProcedureDetailRequest);
 
 #[cfg(test)]
 mod tests {
